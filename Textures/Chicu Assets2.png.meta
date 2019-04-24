@@ -1,0 +1,276 @@
+fileFormatVersion: 2
+guid: 3dd472aaf9fb3d844bdc426897c84985
+timeCreated: 1509967399
+licenseType: Pro
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Chicu Assets2_0
+    21300002: Chicu Assets2_1
+    21300004: Chicu Assets2_2
+    21300006: Chicu Assets2_3
+    21300008: Chicu Assets2_4
+    21300010: Chicu Assets2_5
+    21300012: Chicu Assets2_6
+    21300014: Chicu Assets2_7
+    21300016: Chicu Assets2_8
+    21300018: Chicu Assets2_9
+    21300020: Chicu Assets2_10
+    21300022: Chicu Assets2_11
+    21300024: Chicu Assets2_12
+    21300026: Chicu Assets2_13
+  externalObjects: {}
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 2
+    aniso: 16
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 0
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 220
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Chicu Assets2_0
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 2307
+        width: 209
+        height: 238
+      alignment: 9
+      pivot: {x: 0.21130991, y: 0.19840631}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Chicu Assets2_1
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 2053
+        width: 135
+        height: 457
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Chicu Assets2_2
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 2043
+        width: 459
+        height: 378
+      alignment: 9
+      pivot: {x: 0.52422935, y: 0.34625924}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Chicu Assets2_3
+      rect:
+        serializedVersion: 2
+        x: 1111
+        y: 2376
+        width: 56
+        height: 58
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Chicu Assets2_4
+      rect:
+        serializedVersion: 2
+        x: 1353
+        y: 2092
+        width: 73
+        height: 309
+      alignment: 9
+      pivot: {x: 0.81350833, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Chicu Assets2_5
+      rect:
+        serializedVersion: 2
+        x: 1030
+        y: 2046
+        width: 226
+        height: 157
+      alignment: 9
+      pivot: {x: 0.48226684, y: 0.75525755}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Chicu Assets2_6
+      rect:
+        serializedVersion: 2
+        x: 1619
+        y: 2074
+        width: 67
+        height: 154
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Chicu Assets2_7
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 1827
+        width: 204
+        height: 147
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Chicu Assets2_8
+      rect:
+        serializedVersion: 2
+        x: 887
+        y: 1533
+        width: 266
+        height: 431
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4010406}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Chicu Assets2_9
+      rect:
+        serializedVersion: 2
+        x: 1363
+        y: 1803
+        width: 81
+        height: 214
+      alignment: 9
+      pivot: {x: 0.20461094, y: 0.2423609}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Chicu Assets2_11
+      rect:
+        serializedVersion: 2
+        x: 1539
+        y: 10
+        width: 853
+        height: 1140
+      alignment: 9
+      pivot: {x: 0.49609318, y: 0.112573765}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Chicu Assets2_13
+      rect:
+        serializedVersion: 2
+        x: 628
+        y: 9
+        width: 527
+        height: 605
+      alignment: 9
+      pivot: {x: 0.50606126, y: 0.20433041}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
