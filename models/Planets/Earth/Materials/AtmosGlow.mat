@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: AtmosGlow
+  m_Shader: {fileID: 4800000, guid: eb785a48a0c5d7340a47e2096c352ee5, type: 3}
+  m_ShaderKeywords: _EMISSION _NORMALMAP _SPECGLOSSMAP
+  m_LightmapFlags: 1
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _Lights:
+        m_Texture: {fileID: 2800000, guid: be37e5dafcf017141955e91fe0313f11, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 2a2c447c2633e434ca883ad44d746da1, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Normals:
+        m_Texture: {fileID: 2800000, guid: 7e48e5a73baaa2b40a2bd1379df3f171, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _AtmosFalloff: 3
+    - _Falloff: 4.54
+    - _FalloffPlanet: 999
+    - _LightScale: 1
+    - _Size: 6.8
+    - _Transparency: 1.36
+    - _TransparencyPlanet: 99
+    m_Colors:
+    - _AtmoColor: {r: 0, g: 0.7931032, b: 1, a: 1}
+    - _AtmosFar: {r: 0.4557808, g: 0.5187039, b: 0.9850746, a: 1}
+    - _AtmosNear: {r: 0.1686275, g: 0.7372549, b: 1, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
