@@ -8,18 +8,18 @@ namespace InventorySystem
     {
 
         [SerializeField]
-        public AccessorySlot back;
+        public InternalModuleSlot back;
         [SerializeField]
-        public AccessorySlot jewelery;
+        public InternalModuleSlot jewelery;
         [SerializeField]
-        public AccessorySlot gadget;
+        public InternalModuleSlot gadget;
         [SerializeField]
-        public AccessorySlot mount;
+        public InternalModuleSlot mount;
         [SerializeField]
-        public AccessorySlot pet;
+        public InternalModuleSlot pet;
         [SerializeField]
-        public AccessorySlot sigil;
+        public InternalModuleSlot sigil;
         [SerializeField]
-        public AccessorySlot vanity;
+        public InternalModuleSlot vanity;
     }
 }

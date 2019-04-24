@@ -9,10 +9,10 @@ namespace InventorySystem
     public class EquipmentPanel : MonoBehaviour
     {
         [SerializeField]
-        public EquipmentSlot head;
+        public ExternalModuleSlot head;
         [SerializeField]
-        public EquipmentSlot body;
+        public ExternalModuleSlot body;
         [SerializeField]
-        public EquipmentSlot legs;
+        public ExternalModuleSlot legs;
     }
 }

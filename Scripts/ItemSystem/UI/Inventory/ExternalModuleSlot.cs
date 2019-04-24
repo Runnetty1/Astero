@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 
 namespace InventorySystem
 {
-    public class EquipmentSlot : Slot
+    public class ExternalModuleSlot : Slot
     {
 
         /*
@@ -16,9 +16,10 @@ namespace InventorySystem
          * Allows placement of items with types: Head,body,leg
          */
 
-        public enum EquipmentSlotType {HEAD,BODY,LEG}
-        public EquipmentSlotType equipmentSlotType;
-        public EquipmentSlot()
+        public enum ModuleType {HEAD,BODY,LEG}
+        public ModuleType externalModuleType;
+
+        public ExternalModuleSlot()
         {
             slotType = SlotType.EQUIPMENT;
         }
@@ -27,7 +28,7 @@ namespace InventorySystem
         public override void OnDrop(PointerEventData eventData)
         {
 
-            if(Dragable.itemBeingDragged.GetComponent<Item>().itemType.ToString() == equipmentSlotType.ToString())
+            if(Dragable.itemBeingDragged.GetComponent<Item>().itemType.ToString() == externalModuleType.ToString())
             {
                 base.OnDrop(eventData);
             }

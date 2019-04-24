@@ -7,13 +7,13 @@ using UnityEngine.EventSystems;
 
 namespace InventorySystem
 {
-    public class AccessorySlot : Slot
+    public class InternalModuleSlot : Slot
     {
         // public enum
-        public enum AccessorySlotType {BACK,GADGET,MOUNT,JEWELERY,PET,VANITY,SIGIL}
-        public AccessorySlotType accessorySlotType;
+        public enum ModuleSlotType {BACK,GADGET,MOUNT,JEWELERY,PET,VANITY,SIGIL}
+        public ModuleSlotType accessorySlotType;
 
-        public AccessorySlot()
+        public InternalModuleSlot()
         {
             slotType = SlotType.ACCESSORY;
         }
