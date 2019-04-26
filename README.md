@@ -1,4 +1,6 @@
 # Astero
+2D Space RPG
+
 This is all the files used for Astero made in Unity Engine (https://unity.com)
 Put all the files inside the Asset folder in the Unity project.
 Open the Singleplayer scene in the scen folder to see most of the working systems.
