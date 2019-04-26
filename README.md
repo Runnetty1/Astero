@@ -1,5 +1,7 @@
-# Astero
-2D Space RPG.
+Astero
+=======================
+
+2D Space RPG/Sandbox. 
 
 This is all the files used for Astero made in Unity Engine (https://unity.com)
 Put all the files inside the Asset folder in the Unity project.
