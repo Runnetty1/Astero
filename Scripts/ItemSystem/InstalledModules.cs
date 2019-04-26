@@ -7,6 +7,10 @@ namespace RRG.InventorySystem
     [System.Serializable]
     public class InstalledModules {
 
-        public List<Module> modules;
+        public List<InternalModule> internalModules;
+        public List<ExternalModule> externalModules;
+
+
+        
     }
 }

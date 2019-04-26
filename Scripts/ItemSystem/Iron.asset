@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9da6147f63557f24a9f4a1c15bf57039, type: 3}
-  m_Name: Rysdan Cargo III
+  m_Script: {fileID: 11500000, guid: 65d211f0b47d40a4291018fa5bfa5f6a, type: 3}
+  m_Name: Iron
   m_EditorClassIdentifier: 
-  itemName: 
-  sprite: {fileID: 0}
-  description: 
-  moduleName: Rysdan Hangar III
-  moduleSize: 3
+  itemName: Iron Ore
+  sprite: {fileID: 21300004, guid: a11048c255cc52641b42c29851dbe103, type: 3}
+  rarity: 0
+  description: Iron Ore
+  amount: 53.3
