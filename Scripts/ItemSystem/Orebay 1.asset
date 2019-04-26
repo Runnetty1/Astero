@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 320aa4b8dac7a1a45be004af538f360e, type: 3}
-  m_Name: Orebay
+  m_Name: Orebay 1
   m_EditorClassIdentifier: 
-  itemName: Rysdan Orebay
+  itemName: Fyxal Orebay
   sprite: {fileID: 21300000, guid: ad9e59f57a1bfb14897db02551d13c06, type: 3}
   rarity: 0
   amount: 0
-  description: A large orebay.
-  moduleSize: 150
+  description: A medium orebay.
+  moduleSize: 50
   Ores:
   - {fileID: 11400000, guid: 3be42965617374745ae701ed04addbcb, type: 2}
-  - {fileID: 11400000, guid: eccecf3fc3aa88e42820ce31fbdadb99, type: 2}
+  - {fileID: 11400000, guid: 3be42965617374745ae701ed04addbcb, type: 2}

@@ -11,7 +11,9 @@ namespace RRG.InventorySystem
         public Sprite sprite;
         public enum ItemRarity {Common,Uncommon,Rare};
         public ItemRarity rarity;
-        public string description;
 
+        public double amount;
+        public string description;
+        
     }
 }

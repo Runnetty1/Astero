@@ -269,7 +269,7 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 23
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
     m_Alignment: 5
@@ -489,7 +489,7 @@ GameObject:
   - component: {fileID: 7775967866792070195}
   - component: {fileID: 2687966142920650518}
   m_Layer: 5
-  m_Name: Inventroy
+  m_Name: Inventory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -625,7 +625,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1794.7, y: 338}
+  m_SizeDelta: {x: 1656.4, y: 338}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7413309726315205635
 CanvasRenderer:
@@ -673,14 +673,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 4236101628291997339}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fe431d800cc36a49ac2b1f99e97bcb4, type: 3}
+  m_Script: {fileID: 11500000, guid: 8d6c1baf35a0ce941824f5735aa335e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   internalModule: {fileID: 0}
   contentObj: {fileID: 2086881177533323142}
-  itemPanel: {fileID: 8654637566467443157, guid: 4f942232e69160447902770fe0cceeab,
+  itemPanel: {fileID: 8654637566467443157, guid: e05078a7ebd0ad547b924a68affa03e6,
     type: 3}
-  SizeText: {fileID: 2846143328844910028}
+  SizeText: {fileID: 6540835732760913478}
+  nameText: {fileID: 3575822599140453445}
 --- !u!1 &4601158472039125548
 GameObject:
   m_ObjectHideFlags: 0
@@ -947,7 +948,7 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 23
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
     m_Alignment: 4

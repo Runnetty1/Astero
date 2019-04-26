@@ -16,9 +16,17 @@ namespace RRG.InventorySystem
         // Start is called before the first frame update
         void Start()
         {
-            foreach(InternalModule  imod in spaceship.installedModules.internalModules)
+            if (spaceship.installedModules.internalModules != null && spaceship.installedModules.internalModules.Count != 0)
             {
-                
+                foreach (InternalModule imod in spaceship.installedModules.internalModules)
+                {
+                    if (imod != null)
+                    {
+                        GameObject module = (GameObject)Instantiate(modulePanel, contentObj.transform.position, Quaternion.identity, contentObj.transform);
+                        module.GetComponent<InventoryView>().internalModule = imod;
+                        module.GetComponent<InventoryView>().Instantiate();
+                    }
+                }
             }
         }
 

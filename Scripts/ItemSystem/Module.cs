@@ -9,7 +9,7 @@ namespace RRG.InventorySystem
         [SerializeField]
         private int moduleSize;
     
-        public int ModuleSize
+        public int maxModuleSize
         {
             get
             {

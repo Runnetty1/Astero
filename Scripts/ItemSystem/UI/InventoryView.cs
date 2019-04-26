@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace RRG.InventorySystem
 {
@@ -9,24 +10,30 @@ namespace RRG.InventorySystem
         public InternalModule internalModule;
         public GameObject contentObj;
         public GameObject itemPanel;
-        public GameObject SizeText;
+        public Text SizeText,nameText;
+        private double cargoSize;
         // Start is called before the first frame update
-        void Start()
+        public void Instantiate()
         {
-            if(internalModule.ModuleType == "Cargobay")
+            if (internalModule != null)
             {
-                Debug.Log("Is Cargobay");
+                if (internalModule is OreBay)
+                {
+                    foreach (Item item in ((OreBay)internalModule).Ores)
+                    {
+                        if (item != null)
+                        {
+                            GameObject module = (GameObject)Instantiate(itemPanel, contentObj.transform.position, Quaternion.identity, contentObj.transform);
+                            module.GetComponent<ItemVisualizer>().item = item;
+                            module.GetComponent<ItemVisualizer>().Instantiate();
+                            cargoSize += item.amount;
+                        }
+                    }
+                    SizeText.text = "" + cargoSize + " / " + internalModule.maxModuleSize+" m3";
+                    nameText.text = internalModule.itemName;
+                }
+                
             }
-            if (internalModule.ModuleType == "Hangarbay")
-            {
-                Debug.Log("Is Hangarbay");
-            }
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
         }
     }
 }
