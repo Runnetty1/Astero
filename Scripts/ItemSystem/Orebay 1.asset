@@ -17,11 +17,12 @@ MonoBehaviour:
   rarity: 0
   amount: 0
   description: Smaller Bay
-  moduleSize: 80
+  maxInventorySize: 0
+  currentInventorySize: 0
   Ores:
-  - {fileID: 11400000, guid: 0ea834a8c02bdf44cbef8087f31a176a, type: 2}
   - {fileID: 11400000, guid: 484cfac3b6c083342b3e14fd5d48cf42, type: 2}
-  - {fileID: 11400000, guid: 484cfac3b6c083342b3e14fd5d48cf42, type: 2}
-  - {fileID: 11400000, guid: 484cfac3b6c083342b3e14fd5d48cf42, type: 2}
-  - {fileID: 11400000, guid: 484cfac3b6c083342b3e14fd5d48cf42, type: 2}
-  - {fileID: 11400000, guid: 484cfac3b6c083342b3e14fd5d48cf42, type: 2}
+  - {fileID: 11400000}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

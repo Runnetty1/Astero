@@ -5,7 +5,7 @@ using UnityEngine;
 namespace RRG.InventorySystem
 {
     public interface IModule {
-        int maxModuleSize { get; set; }
+        int ModuleSize { get; set; }
         string ModuleType { get; }
     }
 }

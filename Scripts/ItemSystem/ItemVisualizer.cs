@@ -15,9 +15,14 @@ namespace RRG.InventorySystem
 
         public void Instantiate()
         {
-            image.sprite = item.sprite;
-            amountText.text = ""+item.amount+" m3";
+           
             
+        }
+
+        public void LateUpdate()
+        {
+            image.sprite = item.sprite;
+            amountText.text = "" + item.amount + " m3";
         }
 
         public void OnPointerEnter(PointerEventData eventData)

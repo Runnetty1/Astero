@@ -4,12 +4,13 @@ using UnityEngine;
 
 namespace RRG.InventorySystem
 {
+    [System.Serializable]
     public class Module : Item, IModule
     {
-        [SerializeField]
+        
         private int moduleSize;
     
-        public int maxModuleSize
+        public int ModuleSize
         {
             get
             {

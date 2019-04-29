@@ -15,5 +15,6 @@ MonoBehaviour:
   itemName: Iron
   sprite: {fileID: 21300000, guid: 7d38dc9fa4bd5264f8d30d6cefc963e2, type: 3}
   rarity: 0
-  amount: 25
+  amount: 10
   description: Clump of Iron Ore
+  amount: 0

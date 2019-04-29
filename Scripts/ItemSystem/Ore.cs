@@ -4,9 +4,17 @@ using UnityEngine;
 
 namespace RRG.InventorySystem
 {
+   
     [CreateAssetMenu(fileName = "OreItem", menuName = "Astero/Item/Ore", order = 1)]
+    [System.Serializable]
     public class Ore : Item
     {
-        
+        [SerializeField]
+        public Item item;
+        public int g;
+        public Ore()
+        {
+
+        }
     }
 }

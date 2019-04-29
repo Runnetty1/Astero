@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 namespace RRG.InventorySystem
 {
+    [System.Serializable]
     public class Item : ScriptableObject
     {
         public string itemName;

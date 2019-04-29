@@ -16,6 +16,10 @@ namespace RRG.InventorySystem
         // Start is called before the first frame update
         public void Instantiate()
         {
+            foreach (Transform child in contentObj.transform)
+            {
+                GameObject.Destroy(child.gameObject);
+            }
             if (internalModule != null)
             {
                 if (internalModule is OreBay)
@@ -30,7 +34,7 @@ namespace RRG.InventorySystem
                             cargoSize += item.amount;
                         }
                     }
-                    SizeText.text = "" + cargoSize + " / " + internalModule.maxModuleSize+" m3";
+                    SizeText.text = "" + cargoSize + " / " + internalModule.ModuleSize+" m3";
                     nameText.text = internalModule.itemName;
                     
                 }
@@ -41,6 +45,10 @@ namespace RRG.InventorySystem
         public void Update()
         {
             this.GetComponent<LayoutElement>().minHeight = 34 + contentObj.GetComponent<RectTransform>().sizeDelta.y + padding;
+            if (Input.GetKeyDown(KeyCode.I))
+            {
+                Instantiate();
+            }
         }
     }
 }
