@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
-namespace InventorySystem.Core
+
+namespace RRG.InventorySystem
 {
-    public class Dragable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+    public class Dragable : MonoBehaviour//, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
+        /*
         [HideInInspector]
         public static GameObject itemBeingDragged;
         
@@ -129,5 +131,6 @@ namespace InventorySystem.Core
             this.state = DragState.IDLE;
 
         }
+        */
     }
 }
