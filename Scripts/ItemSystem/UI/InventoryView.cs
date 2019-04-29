@@ -12,6 +12,7 @@ namespace RRG.InventorySystem
         public GameObject itemPanel;
         public Text SizeText,nameText;
         private double cargoSize;
+        public float padding;
         // Start is called before the first frame update
         public void Instantiate()
         {
@@ -31,9 +32,15 @@ namespace RRG.InventorySystem
                     }
                     SizeText.text = "" + cargoSize + " / " + internalModule.maxModuleSize+" m3";
                     nameText.text = internalModule.itemName;
+                    
                 }
                 
             }
+        }
+
+        public void Update()
+        {
+            this.GetComponent<LayoutElement>().minHeight = 34 + contentObj.GetComponent<RectTransform>().sizeDelta.y + padding;
         }
     }
 }

@@ -555,7 +555,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   installedModules:
     internalModules:
-    - {fileID: 11400000, guid: 860ed004f29f8b34e97af3eb5f5eee08, type: 2}
+    - {fileID: 11400000, guid: d4f6854f4289d6f4cb42e8dad826ff94, type: 2}
+    - {fileID: 11400000, guid: 4649a2971d82577428fbe78b004867ce, type: 2}
+    - {fileID: 11400000, guid: d4f6854f4289d6f4cb42e8dad826ff94, type: 2}
+    - {fileID: 11400000, guid: d4f6854f4289d6f4cb42e8dad826ff94, type: 2}
     externalModules: []
 --- !u!1 &544562416
 GameObject:
@@ -636,7 +639,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1597796262}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9999998
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1084,11 +1087,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 882436938}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a666f3af16f5d7498d11eb59a1b4b1a, type: 3}
+  m_Script: {fileID: 11500000, guid: 6b16bbd451838e847a4bf3696f5d888f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spaceship: {fileID: 532762894}
-  modulePanel: {fileID: 4236101628291997339, guid: 65ccf8abe89b8dc4992f786376e9bdc7,
+  modulePanel: {fileID: 4236101628291997339, guid: 9a0b0c879738d5949a35ab1cb18ce26a,
     type: 3}
   contentObj: {fileID: 2143320401}
 --- !u!1 &896263141
@@ -1448,7 +1451,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1016262281}
   m_HandleRect: {fileID: 1016262280}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -2471,7 +2474,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000013690541, y: -0.000027410893}
+  m_AnchoredPosition: {x: 0.000013690541, y: -0.000027071657}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1477952726
@@ -2557,7 +2560,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1492243543}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ad974628185673419535eef964216d4, type: 3}
+  m_Script: {fileID: 11500000, guid: 7b827c400f131a941af4b2d3c60074d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mouseOffset: {x: 0.7, y: -0.7}
@@ -2940,7 +2943,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000013690541, y: -0.00003650895}
+  m_AnchoredPosition: {x: 0, y: 0.000030517578}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2143320403
@@ -2956,7 +2959,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
-  m_VerticalFit: 2
+  m_VerticalFit: 1
 --- !u!114 &2143320404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2976,7 +2979,7 @@ MonoBehaviour:
     m_Bottom: 5
   m_ChildAlignment: 0
   m_Spacing: 15
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
+  m_ChildForceExpandWidth: 0
+  m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1
-  m_ChildControlHeight: 0
+  m_ChildControlHeight: 1
