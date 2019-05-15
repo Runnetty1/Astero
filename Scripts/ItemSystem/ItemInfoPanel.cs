@@ -12,7 +12,7 @@ namespace RRG.InventorySystem
 
         public Text nameBox,Desc,Amount,rarity;
         public GameObject visualizer;
-        public Item visualItem;
+        public ItemInstance visualItem;
 
         private void OnEnable()
         {
@@ -31,7 +31,7 @@ namespace RRG.InventorySystem
             ItemEvents.OnItemStopHover -= HideVisualizeItem;
         }
 
-        public void VisualizeItem(Item item)
+        public void VisualizeItem(ItemInstance item)
         {
             if(item == visualItem)
             {
@@ -40,10 +40,10 @@ namespace RRG.InventorySystem
             else
             {
                 visualItem = item;
-                nameBox.text = item.itemName;
-                Desc.text = item.description;
+                nameBox.text = item.item.itemName;
+                Desc.text = item.item.description;
                 Amount.text = ""+item.amount+" m3";
-                rarity.text = "" + item.rarity;
+                rarity.text = "" + item.item.rarity;
                 visualizer.gameObject.SetActive(true);
             }
         }

@@ -24,17 +24,17 @@ namespace RRG.InventorySystem
             {
                 if (internalModule is OreBay)
                 {
-                    foreach (Item item in ((OreBay)internalModule).Ores)
+                    foreach (ItemInstance item in ((OreBay)internalModule).inventory)
                     {
                         if (item != null)
                         {
                             GameObject module = (GameObject)Instantiate(itemPanel, contentObj.transform.position, Quaternion.identity, contentObj.transform);
                             module.GetComponent<ItemVisualizer>().item = item;
                             module.GetComponent<ItemVisualizer>().Instantiate();
-                            cargoSize += item.amount;
+                            //cargoSize += item.amount;
                         }
                     }
-                    SizeText.text = "" + cargoSize + " / " + internalModule.ModuleSize+" m3";
+                    SizeText.text = "" + (internalModule as OreBay).currentInventorySize+ " / " + (internalModule as OreBay).maxInventorySize+ " m3";
                     nameText.text = internalModule.itemName;
                     
                 }
@@ -45,7 +45,7 @@ namespace RRG.InventorySystem
         public void Update()
         {
             this.GetComponent<LayoutElement>().minHeight = 34 + contentObj.GetComponent<RectTransform>().sizeDelta.y + padding;
-            if (Input.GetKeyDown(KeyCode.I))
+            if (Input.GetKeyDown(KeyCode.I) || Input.GetKeyDown(KeyCode.O) || Input.GetKeyDown(KeyCode.U))
             {
                 Instantiate();
             }

@@ -9,12 +9,6 @@ namespace RRG.InventorySystem
     [System.Serializable]
     public class Ore : Item
     {
-        [SerializeField]
-        public Item item;
-        public int g;
-        public Ore()
-        {
-
-        }
+        
     }
 }

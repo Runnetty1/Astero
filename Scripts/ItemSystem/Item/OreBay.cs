@@ -3,14 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace RRG.InventorySystem
 {
-    
+    [System.Serializable]
     [CreateAssetMenu(fileName = "Orebay", menuName = "Astero/Item/Modules/Internal/Orebay", order = 1)]
-    public class OreBay : InternalModule
+    public class OreBay : InventoryModule
     {
-        public double maxInventorySize;
-        public double currentInventorySize;
-
-        public List<Item> Ores;
 
         public override string ModuleType
         {
@@ -20,20 +16,7 @@ namespace RRG.InventorySystem
             }
         }
 
-        public bool hasSpace(double amount)
-        {
-            if ((currentInventorySize + amount) > maxInventorySize)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
 
-        public void AddToOreOfSameType() {
-
-        }
+       
     }
 }

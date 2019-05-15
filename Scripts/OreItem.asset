@@ -10,11 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 65d211f0b47d40a4291018fa5bfa5f6a, type: 3}
-  m_Name: Iron
+  m_Name: OreItem
   m_EditorClassIdentifier: 
-  itemName: Iron
-  sprite: {fileID: 21300000, guid: 7d38dc9fa4bd5264f8d30d6cefc963e2, type: 3}
+  itemName: iron
+  sprite: {fileID: 21300000, guid: ad9e59f57a1bfb14897db02551d13c06, type: 3}
   rarity: 0
-  amount: 10
-  description: Clump of Iron Ore
-  amount: 0
+  description: it

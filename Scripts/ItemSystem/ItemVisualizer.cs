@@ -8,7 +8,7 @@ namespace RRG.InventorySystem
 {
     public class ItemVisualizer : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
-        public Item item;
+        public ItemInstance item;
 
         public Image image;
         public Text amountText;
@@ -21,7 +21,7 @@ namespace RRG.InventorySystem
 
         public void LateUpdate()
         {
-            image.sprite = item.sprite;
+            image.sprite = item.item.sprite;
             amountText.text = "" + item.amount + " m3";
         }
 

@@ -6,10 +6,10 @@ namespace RRG.InventorySystem
 {
     public class ItemEvents
     {
-        public delegate void ItemHover(Item item);
+        public delegate void ItemHover(ItemInstance item);
         public static event ItemHover OnItemHover;
 
-        public void ItemHoverEvent(Item g) => OnItemHover?.Invoke(g);
+        public void ItemHoverEvent(ItemInstance g) => OnItemHover?.Invoke(g);
 
         public delegate void ItemStopedHover();
         public static event ItemStopedHover OnItemStopHover;
