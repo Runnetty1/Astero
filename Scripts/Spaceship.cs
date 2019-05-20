@@ -18,29 +18,30 @@ namespace RRG.ControlledObjects
         public Item item;
         public Item item2;
         public OreBay bay;
+        public CargoBay bay2;
 
 
         public void Start()
         {
-            installedModules.internalModules.Add(OreBay.Instantiate(bay));
+            //installedModules.internalModules.Add(OreBay.Instantiate(bay));
         }
 
         public void Update()
         {
-            if (Input.GetKeyDown(KeyCode.I))
+            if (Input.GetKeyDown(KeyCode.I) )
             {
-                AddItemToInventory(new ItemInstance(item2, .5));
+                AddItemToInventory(new ItemInstance(item, .5));
             }
 
             if (Input.GetKeyDown(KeyCode.U))
             {
-                AddItemToInventory(new ItemInstance(item2, .5));
+                AddItemToInventory(new ItemInstance(item2, 5.5));
             }
 
 
             if (Input.GetKeyDown(KeyCode.O))
             {
-                if (installedModules.internalModules[0] != null)
+                if (installedModules.internalModules != null && installedModules.internalModules.Count>0)
                 {
                     if (installedModules.internalModules[0] is OreBay)
                     {
@@ -50,22 +51,41 @@ namespace RRG.ControlledObjects
                     }
 
                 }
+                else
+                {
+                    Debug.LogError("Theres no inventory to drop.");
+                }
             }
 
             if (Input.GetKeyDown(KeyCode.K))
             {
-                Debug.Log("Adding Inventory");
-                installedModules.internalModules.Add(OreBay.Instantiate(bay));
+                
+                installedModules.InstallModule(OreBay.Instantiate(bay));
+            }
+            if (Input.GetKeyDown(KeyCode.L))
+            {
+
+                installedModules.InstallModule(CargoBay.Instantiate(bay2));
             }
         }
 
 
-        public void AddItemToInventory(ItemInstance item)
+        public bool AddItemToInventory(ItemInstance item)
         {
             //Not working
-            OreBay bay = installedModules.GetOreBayBySpace(installedModules.GetModulesByType(typeof(CargoBay).ToString()),item);
-            bay.InsertItem(item);
+            if (installedModules.internalModules.Count != 0 && installedModules.internalModules != null)
+            {
+                return installedModules.AddItemToAInternalInventoryModule(item);
+            }
             //if(item.item is Material)
+            Debug.LogError("Ship has no inventory, please add one.");
+            return false;
+        }
+
+        public bool DropInventory()
+        {
+
+            return false;
         }
     }
 }

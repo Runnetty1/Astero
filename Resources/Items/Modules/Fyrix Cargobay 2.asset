@@ -9,10 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65d211f0b47d40a4291018fa5bfa5f6a, type: 3}
-  m_Name: OreItem 1
+  m_Script: {fileID: 11500000, guid: 83ff1b5d889585d4d80fd5004d6955dc, type: 3}
+  m_Name: Fyrix Cargobay 2
   m_EditorClassIdentifier: 
-  itemName: copper
-  sprite: {fileID: 21300014, guid: 3dd472aaf9fb3d844bdc426897c84985, type: 3}
+  itemName: Fyrix Cargobay 2
+  sprite: {fileID: 21300004, guid: 186ede1a6607db84e922dbba2fd253ac, type: 3}
   rarity: 0
-  description: copperginhg
+  description: Large Cargobay.
+  maxInventorySize: 30
+  currentInventorySize: 0
+  inventory: []

@@ -5,11 +5,8 @@ using UnityEngine;
 namespace RRG.InventorySystem
 {
     [CreateAssetMenu(fileName = "Cargobay", menuName = "Astero/Item/Modules/Internal/Cargobay", order = 1)]
-    public class CargoBay : InternalModule
+    public class CargoBay : InventoryModule
     {
-
-        public double maxInventorySize;
-
 
         public override string ModuleType
         {

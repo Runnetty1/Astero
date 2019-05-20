@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace RRG.InventorySystem
 {
-   
     [CreateAssetMenu(fileName = "OreItem", menuName = "Astero/Item/Ore", order = 1)]
     [System.Serializable]
     public class Ore : Item

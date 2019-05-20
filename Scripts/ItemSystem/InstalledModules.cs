@@ -7,6 +7,8 @@ namespace RRG.InventorySystem
     [System.Serializable]
     public class InstalledModules {
 
+        public int maxInternalModules;
+        public int maxExternalModules;
 
         public List<InternalModule> internalModules;
         public List<ExternalModule> externalModules;
@@ -25,13 +27,13 @@ namespace RRG.InventorySystem
             return list;
         }
 
-        public OreBay GetOreBayBySpace(List<InternalModule> mods,ItemInstance item)
+        public OreBay GetOreBayBySpace(double amount)
         {
-            foreach(InternalModule mod in mods)
+            foreach(InternalModule mod in internalModules)
             {
                 if(mod is OreBay)
                 {
-                    if((mod as OreBay).HasSpace(item))
+                    if((mod as OreBay).HasSpace(amount))
                     {
                         return mod as OreBay;
                     }
@@ -39,21 +41,77 @@ namespace RRG.InventorySystem
             }
             return null;
         }
-        public CargoBay GetCargoBayBySpace(List<InternalModule> mods, ItemInstance item)
+        public CargoBay GetCargoBayBySpace(double amount)
         {
-            foreach (InternalModule mod in mods)
+            foreach (InternalModule mod in internalModules)
             {
                 if (mod is CargoBay)
                 {
-                    /*
-                    if ((mod as CargoBay).HasSpace(item))
+                    if ((mod as CargoBay).HasSpace(amount))
                     {
                         return mod as CargoBay;
                     }
-                    */
                 }
             }
             return null;
+        }
+
+        public bool InstallModule(Module module)
+        {
+            string error = "";
+            if(module is InternalModule)
+            {
+                if (internalModules.Count < maxInternalModules)
+                {
+                    internalModules.Add(module as InternalModule);
+                    Debug.Log("Added internal Module: "+module.itemName);
+                    new ModuleEvents().ModuleInstallEvent(module);
+                    return true;
+                }
+                else
+                {
+                    error = "Max Amount of Internal Modules, max: "+maxInternalModules;
+                }
+            }
+            if(module is ExternalModule)
+            {
+                if (externalModules.Count < maxExternalModules)
+                {
+                    externalModules.Add(module as ExternalModule);
+                    Debug.Log("Added internal Module: " + module.itemName);
+                    new ModuleEvents().ModuleInstallEvent(module);
+                    return true;
+                }
+                else
+                {
+                    error = "Max Amount of External Modules, max: "+maxExternalModules;
+                }
+            }
+
+            Debug.LogError("Unable to Install: "+module.itemName+", Reason: "+error);
+            return false;
+        }
+
+        public bool AddItemToAInternalInventoryModule(ItemInstance item)
+        {
+            if (item.item is Ore)
+            {
+                OreBay bay = GetOreBayBySpace(item.amount);
+                if (bay != null)
+                {
+                    bay.InsertItem(item);
+                }
+            }
+
+            if ((item.item is CargoItem))
+            {
+                CargoBay bay = GetCargoBayBySpace(item.amount);
+                if (bay != null)
+                {
+                    bay.InsertItem(item);
+                }
+            }
+            return false;
         }
     }
 }

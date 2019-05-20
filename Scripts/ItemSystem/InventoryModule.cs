@@ -10,40 +10,42 @@ namespace RRG.InventorySystem
     public class InventoryModule : InternalModule
     {
         public double maxInventorySize;
+        [HideInInspector]
         public double currentInventorySize;
-        
+
         /* Inventory START */
+        [HideInInspector]
         public List<ItemInstance> inventory;
 
 
         // Insert an item, return the index where it was inserted.  -1 if error.
         public bool InsertItem(ItemInstance item)
         {
-            if (HasSpace(item))
+            if (HasSpace(item.amount))
             {
-                Debug.Log("Has space");
                 if (GetItemOfSameName(item.item.itemName) != null && inventory.Count>0)
                 {
-                    Debug.Log("Has same item. Merging");
                     GetItemOfSameName(item.item.itemName).amount += item.amount;
+                    new ItemEvents().ItemMergedEvent(item);
                 }
                 else
                 {
-                    Debug.Log("no such item in inventory");
+                    
                     inventory.Add(item);
+                    new ItemEvents().ItemAddedEvent(item);
                 }
                 UpdateInventorySize();
                 
                 return true;
             }
-            Debug.Log("No Space for item");
+            Debug.LogError("No Space for item");
             // Couldn't find a free slot.
             return false;
         }
 
-        public bool HasSpace(ItemInstance item)
+        public bool HasSpace(double amount)
         {
-            if (item.amount + currentInventorySize > maxInventorySize)
+            if (amount + currentInventorySize > maxInventorySize)
             {
                 return false;
             }

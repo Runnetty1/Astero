@@ -10,7 +10,7 @@ namespace RRG.InventorySystem
         public InternalModule internalModule;
         public GameObject contentObj;
         public GameObject itemPanel;
-        public Text SizeText,nameText;
+        public Text SizeText, nameText;
         private double cargoSize;
         public float padding;
         // Start is called before the first frame update
@@ -22,9 +22,9 @@ namespace RRG.InventorySystem
             }
             if (internalModule != null)
             {
-                if (internalModule is OreBay)
+                if (internalModule is InventoryModule)
                 {
-                    foreach (ItemInstance item in ((OreBay)internalModule).inventory)
+                    foreach (ItemInstance item in ((InventoryModule)internalModule).inventory)
                     {
                         if (item != null)
                         {
@@ -34,21 +34,30 @@ namespace RRG.InventorySystem
                             //cargoSize += item.amount;
                         }
                     }
-                    SizeText.text = "" + (internalModule as OreBay).currentInventorySize+ " / " + (internalModule as OreBay).maxInventorySize+ " m3";
-                    nameText.text = internalModule.itemName;
                     
+
                 }
-                
+
             }
+            SizeText.text = "" + (internalModule as InventoryModule).currentInventorySize + " / " + (internalModule as InventoryModule).maxInventorySize + " m3";
+            nameText.text = internalModule.itemName;
+        }
+
+        private void OnEnable()
+        {
+            ItemEvents.OnItemAdded += UpdateInventoryView;
+            ItemEvents.OnItemMerge += UpdateInventoryView;
+        }
+
+        public void UpdateInventoryView(ItemInstance item)
+        {
+            Instantiate();
         }
 
         public void Update()
         {
             this.GetComponent<LayoutElement>().minHeight = 34 + contentObj.GetComponent<RectTransform>().sizeDelta.y + padding;
-            if (Input.GetKeyDown(KeyCode.I) || Input.GetKeyDown(KeyCode.O) || Input.GetKeyDown(KeyCode.U))
-            {
-                Instantiate();
-            }
+            
         }
     }
 }

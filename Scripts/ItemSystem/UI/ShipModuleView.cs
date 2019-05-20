@@ -22,16 +22,30 @@ namespace RRG.InventorySystem
                 {
                     if (imod != null)
                     {
-                        GameObject module = (GameObject)Instantiate(modulePanel, contentObj.transform.position, Quaternion.identity, contentObj.transform);
-                        module.GetComponent<InventoryView>().internalModule = imod;
-                        module.GetComponent<InventoryView>().Instantiate();
+                        AddModuleView(imod);
                     }
                 }
             }
         }
 
-        // Update is called once per frame
-        void Update()
+        private void OnEnable()
+        {
+            ModuleEvents.OnModuleInstall += AddModuleView;
+        }
+
+        public void AddModuleView(Module mod)
+        {
+            if(mod != null)
+            {
+                if (mod is InternalModule)
+                {
+                    GameObject module = (GameObject)Instantiate(modulePanel, contentObj.transform.position, Quaternion.identity, contentObj.transform);
+                    module.GetComponent<InventoryView>().internalModule = mod as InternalModule;
+                    module.GetComponent<InventoryView>().Instantiate();
+                }
+            }
+        }
+        public void RemoveModuleView()
         {
 
         }
