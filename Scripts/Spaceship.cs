@@ -30,12 +30,12 @@ namespace RRG.ControlledObjects
         {
             if (Input.GetKeyDown(KeyCode.I) )
             {
-                AddItemToInventory(new ItemInstance(item, .5));
+                AddItemToInventory(new ItemInstance(item, .5),true);
             }
 
             if (Input.GetKeyDown(KeyCode.U))
             {
-                AddItemToInventory(new ItemInstance(item2, 5.5));
+                AddItemToInventory(new ItemInstance(item2, 5.5),true);
             }
 
 
@@ -70,12 +70,12 @@ namespace RRG.ControlledObjects
         }
 
 
-        public bool AddItemToInventory(ItemInstance item)
+        public bool AddItemToInventory(ItemInstance item,bool useStack)
         {
             //Not working
             if (installedModules.internalModules.Count != 0 && installedModules.internalModules != null)
             {
-                return installedModules.AddItemToAInternalInventoryModule(item);
+                return installedModules.AddItemToAInternalInventoryModule(item,useStack);
             }
             //if(item.item is Material)
             Debug.LogError("Ship has no inventory, please add one.");

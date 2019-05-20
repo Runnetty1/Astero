@@ -92,14 +92,14 @@ namespace RRG.InventorySystem
             return false;
         }
 
-        public bool AddItemToAInternalInventoryModule(ItemInstance item)
+        public bool AddItemToAInternalInventoryModule(ItemInstance item,bool useStack)
         {
             if (item.item is Ore)
             {
                 OreBay bay = GetOreBayBySpace(item.amount);
                 if (bay != null)
                 {
-                    bay.InsertItem(item);
+                    bay.InsertItem(item,useStack);
                 }
             }
 
@@ -108,7 +108,7 @@ namespace RRG.InventorySystem
                 CargoBay bay = GetCargoBayBySpace(item.amount);
                 if (bay != null)
                 {
-                    bay.InsertItem(item);
+                    bay.InsertItem(item,useStack);
                 }
             }
             return false;

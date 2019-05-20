@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace RRG.InventorySystem
 {
-    public class ItemVisualizer : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+    public class ItemVisualizer : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,IPointerClickHandler
     {
         public ItemInstance item;
 
@@ -33,6 +33,14 @@ namespace RRG.InventorySystem
         public void OnPointerExit(PointerEventData eventData)
         {
             new ItemEvents().ItemStopedHoverEvent();
+        }
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            if (eventData.button == PointerEventData.InputButton.Right)
+            {
+                Debug.Log("Right Mouse Button Clicked on: " + item.item.itemName);
+                new ItemEvents().ItemRightClickEvent(item,this.transform.position);
+            }
         }
     }
 }

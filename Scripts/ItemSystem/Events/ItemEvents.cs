@@ -26,6 +26,11 @@ namespace RRG.InventorySystem
 
         public void ItemMergedEvent(ItemInstance itemInstance) => OnItemMerge?.Invoke(itemInstance);
 
+        public delegate void ItemRightClick(ItemInstance item,Vector2 pos);
+        public static event ItemRightClick OnItemRightClick;
+
+        public void ItemRightClickEvent(ItemInstance itemInstance,Vector2 pos) => OnItemRightClick?.Invoke(itemInstance,pos);
+
 
     }
 }

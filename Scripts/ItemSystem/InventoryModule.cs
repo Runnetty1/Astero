@@ -19,18 +19,25 @@ namespace RRG.InventorySystem
 
 
         // Insert an item, return the index where it was inserted.  -1 if error.
-        public bool InsertItem(ItemInstance item)
+        public bool InsertItem(ItemInstance item,bool useStack)
         {
             if (HasSpace(item.amount))
             {
                 if (GetItemOfSameName(item.item.itemName) != null && inventory.Count>0)
                 {
-                    GetItemOfSameName(item.item.itemName).amount += item.amount;
-                    new ItemEvents().ItemMergedEvent(item);
+                    if (useStack)
+                    {
+                        GetItemOfSameName(item.item.itemName).amount += item.amount;
+                        new ItemEvents().ItemMergedEvent(item);
+                    }
+                    else
+                    {
+                        inventory.Add(item);
+                        new ItemEvents().ItemAddedEvent(item);
+                    }
                 }
                 else
                 {
-                    
                     inventory.Add(item);
                     new ItemEvents().ItemAddedEvent(item);
                 }
