@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using RRG.InventorySystem;
+using System;
 
 namespace RRG.ControlledObjects
 {
@@ -69,22 +70,17 @@ namespace RRG.ControlledObjects
             }
         }
 
-
         public bool AddItemToInventory(ItemInstance item,bool useStack)
         {
             //Not working
             if (installedModules.internalModules.Count != 0 && installedModules.internalModules != null)
             {
-                return installedModules.AddItemToAInternalInventoryModule(item,useStack);
+                Debug.Log("AddItemToInventory: trying to add item to inventory");
+                installedModules.AddItemToAInternalInventoryModule(item, useStack);
+                return true;
             }
             //if(item.item is Material)
             Debug.LogError("Ship has no inventory, please add one.");
-            return false;
-        }
-
-        public bool DropInventory()
-        {
-
             return false;
         }
     }

@@ -14,8 +14,23 @@ namespace RRG.InventorySystem
         public double currentInventorySize;
 
         /* Inventory START */
-        [HideInInspector]
+        //[HideInInspector]
         public List<ItemInstance> inventory;
+
+        private void OnEnable()
+        {
+            ItemEvents.OnItemDrop += DropItem;
+            inventory = new List<ItemInstance>();
+        }
+        private void OnDisable()
+        {
+            ItemEvents.OnItemDrop -= DropItem;
+        }
+
+        public List<ItemInstance> GetInventory()
+        {
+            return inventory;
+        }
 
 
         // Insert an item, return the index where it was inserted.  -1 if error.
@@ -23,15 +38,18 @@ namespace RRG.InventorySystem
         {
             if (HasSpace(item.amount))
             {
+                Debug.Log("theres space for item");
                 if (GetItemOfSameName(item.item.itemName) != null && inventory.Count>0)
                 {
                     if (useStack)
                     {
+                        Debug.Log("Placing item on stack");
                         GetItemOfSameName(item.item.itemName).amount += item.amount;
                         new ItemEvents().ItemMergedEvent(item);
                     }
                     else
                     {
+                        Debug.Log("Added item as seperate object");
                         inventory.Add(item);
                         new ItemEvents().ItemAddedEvent(item);
                     }
@@ -40,6 +58,7 @@ namespace RRG.InventorySystem
                 {
                     inventory.Add(item);
                     new ItemEvents().ItemAddedEvent(item);
+                    Debug.Log("Added new item");
                 }
                 UpdateInventorySize();
                 
@@ -94,5 +113,18 @@ namespace RRG.InventorySystem
             UpdateInventorySize();
         }
         
+        public void DropItem(ItemInstance item)
+        {
+            if (inventory.Contains(item))
+            {
+                //Drop Item as physical cargo
+                Debug.Log("Droping: "+item.item.itemName);
+
+                //remove item from list
+                inventory.Remove(item);
+                UpdateInventorySize();
+            }
+        }
+
     }
 }

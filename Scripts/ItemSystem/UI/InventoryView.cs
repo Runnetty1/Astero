@@ -24,17 +24,19 @@ namespace RRG.InventorySystem
             {
                 if (internalModule is InventoryModule)
                 {
-                    foreach (ItemInstance item in ((InventoryModule)internalModule).inventory)
+                    if (((InventoryModule)internalModule).GetInventory()!=null)
                     {
-                        if (item != null)
+                        foreach (ItemInstance item in ((InventoryModule)internalModule).GetInventory())
                         {
-                            GameObject module = (GameObject)Instantiate(itemPanel, contentObj.transform.position, Quaternion.identity, contentObj.transform);
-                            module.GetComponent<ItemVisualizer>().item = item;
-                            module.GetComponent<ItemVisualizer>().Instantiate();
-                            //cargoSize += item.amount;
+                            if (item != null)
+                            {
+                                GameObject module = (GameObject)Instantiate(itemPanel, contentObj.transform.position, Quaternion.identity, contentObj.transform);
+                                module.GetComponent<ItemVisualizer>().item = item;
+                                module.GetComponent<ItemVisualizer>().Instantiate();
+                                //cargoSize += item.amount;
+                            }
                         }
                     }
-                    
 
                 }
 
@@ -47,6 +49,7 @@ namespace RRG.InventorySystem
         {
             ItemEvents.OnItemAdded += UpdateInventoryView;
             ItemEvents.OnItemMerge += UpdateInventoryView;
+            ItemEvents.OnItemDrop += UpdateInventoryView;
         }
 
         public void UpdateInventoryView(ItemInstance item)

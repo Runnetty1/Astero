@@ -36,16 +36,16 @@ namespace RRG.InventorySystem
         {
             
             ItemInstance split = new ItemInstance(item.item,item.amount/2);
-            item.amount = item.amount / 2;
+            item.amount /= 2;
             ship.AddItemToInventory(split,false);
-
+            Debug.Log("split button clicked");
         }
 
-
-
-        void Update()
+        public void DropItem()
         {
-
+            new ItemEvents().ItemDropedEvent(item);
         }
+
+        
     }
 }

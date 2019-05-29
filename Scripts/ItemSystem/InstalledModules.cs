@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -92,13 +93,20 @@ namespace RRG.InventorySystem
             return false;
         }
 
+        
+
         public bool AddItemToAInternalInventoryModule(ItemInstance item,bool useStack)
         {
+            Debug.Log("Installedmods: begining");
             if (item.item is Ore)
             {
+                Debug.Log("Installedmods: item is ore");
+                // Problem arrises here
+                //a item is split and the new item is beeing added, but it wont be because the bay is full...
                 OreBay bay = GetOreBayBySpace(item.amount);
                 if (bay != null)
                 {
+                    Debug.Log("Installedmods: trying to add item to Orebay");
                     bay.InsertItem(item,useStack);
                 }
             }
