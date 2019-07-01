@@ -16,25 +16,27 @@ namespace RRG.InventorySystem
         // Start is called before the first frame update
         void Start()
         {
-            if (spaceship.installedModules.internalModules != null && spaceship.installedModules.internalModules.Count != 0)
+            /*
+            if (spaceship.ModuleSlots.internalModules != null && spaceship.ModuleSlots.internalModules.Count != 0)
             {
-                foreach (InternalModule imod in spaceship.installedModules.internalModules)
+                foreach (InternalModule imod in spaceship.ModuleSlots.internalModules)
                 {
                     if (imod != null)
                     {
                         AddModuleView(imod);
                     }
                 }
-            }
+            }*/
         }
 
         private void OnEnable()
         {
-            ModuleEvents.OnModuleInstall += AddModuleView;
+            //ModuleEvents.OnModuleInstall += AddModuleView;
         }
 
         public void AddModuleView(Module mod)
         {
+            /*
             if(mod != null)
             {
                 if (mod is InternalModule)
@@ -43,7 +45,7 @@ namespace RRG.InventorySystem
                     module.GetComponent<InventoryView>().internalModule = mod as InternalModule;
                     module.GetComponent<InventoryView>().Instantiate();
                 }
-            }
+            }*/
         }
         public void RemoveModuleView()
         {

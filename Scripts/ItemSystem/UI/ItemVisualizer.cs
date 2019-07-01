@@ -107,10 +107,12 @@ namespace RRG.InventorySystem
         {
             Debug.Log("dropping on item");
             Debug.Log("this item: " + item.item + ", item dragged: " + ItemTokenView.ite.item);
+            /*
             if(item.item.itemName == ItemTokenView.ite.item.itemName)
             {
                 //Same Name ok to merge amounts
                 //Does this inventory have space?
+
                 (GetComponentInParent<InventoryView>().internalModule as InventoryModule).UpdateInventorySize();
                 if ((GetComponentInParent<InventoryView>().internalModule as InventoryModule).HasSpace(ItemTokenView.ite.amount))
                 {
@@ -135,6 +137,7 @@ namespace RRG.InventorySystem
             }
             
             ItemDragStop();
+            */
         }
     }
 }

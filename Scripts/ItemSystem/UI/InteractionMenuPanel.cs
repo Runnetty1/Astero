@@ -47,7 +47,7 @@ namespace RRG.InventorySystem
             ItemInstance split = new ItemInstance(item.item,item.amount/2);
             item.amount /= 2;
             
-            ship.installedModules.AddItemToAInternalInventoryModule(split,false);
+            //ship.installedModules.AddItemToAInternalInventoryModule(split,false);
             Debug.Log("split button clicked");
             HidePanel();
         }

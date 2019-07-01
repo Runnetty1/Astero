@@ -25,6 +25,7 @@ namespace RRG.InventorySystem
             {
                 if (internalModule is InventoryModule)
                 {
+                    /*
                     if (((InventoryModule)internalModule).GetInventory()!=null)
                     {
                         foreach (ItemInstance item in ((InventoryModule)internalModule).GetInventory())
@@ -38,18 +39,19 @@ namespace RRG.InventorySystem
                             }
                         }
                     }
+                    */
 
                 }
 
             }
 
-            SizeText.text = "" + (internalModule as InventoryModule).CurrentInventorySize + " / " + (internalModule as InventoryModule).maxInventorySize + " m3";
+            //SizeText.text = "" + (internalModule as InventoryModule).CurrentInventorySize + " / " + (internalModule as InventoryModule).maxInventorySize + " m3";
             nameText.text = internalModule.itemName;
         }
 
         private void OnEnable()
         {
-            InventoryModule.OnModuleUpdate += UpdateInventoryView;
+            //InventoryModule.OnModuleUpdate += UpdateInventoryView;
         }
 
         public void UpdateInventoryView(ItemInstance item)
@@ -72,7 +74,7 @@ namespace RRG.InventorySystem
         }
 
         public void OnDrop(PointerEventData eventData)
-        {
+        {/*
             Debug.Log("dropping into inventory");
             if (!(internalModule as InventoryModule).HasItem(ItemTokenView.ite))
             {
@@ -93,6 +95,7 @@ namespace RRG.InventorySystem
                 
             }
             ItemVisualizer.ItemDragStop();
+            */
         }
     }
 }
