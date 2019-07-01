@@ -19,5 +19,15 @@ namespace RRG.InventorySystem
         public static event ModuleInstall OnModuleInstall;
 
         public void ModuleInstallEvent(Module g) => OnModuleInstall?.Invoke(g);
+
+        public delegate void InventoryItemAdd(InventoryModule module, ItemInstance item, bool useStack);
+        public static event InventoryItemAdd OnModuleItemAdd;
+
+        public void ModuleAddItem(InventoryModule module, ItemInstance item, bool useStack) => OnModuleItemAdd?.Invoke(module, item, useStack);
+
+        public delegate void InventoryItemRemove(InventoryModule module, ItemInstance item);
+        public static event InventoryItemRemove OnModuleItemRemove;
+
+        public void ModuleRemoveItem(InventoryModule module, ItemInstance item) => OnModuleItemRemove?.Invoke(module, item);
     }
 }

@@ -12,10 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83ff1b5d889585d4d80fd5004d6955dc, type: 3}
   m_Name: Fyrix Cargobay 2
   m_EditorClassIdentifier: 
-  itemName: Fyrix Cargobay 2
+  itemName: Cargobay
   sprite: {fileID: 21300004, guid: 186ede1a6607db84e922dbba2fd253ac, type: 3}
   rarity: 0
   description: Large Cargobay.
   maxInventorySize: 30
-  currentInventorySize: 0
-  inventory: []

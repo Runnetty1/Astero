@@ -3,85 +3,96 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using System.Linq;
+using System;
 
 namespace RRG.InventorySystem
 {
     [System.Serializable]
-    public class InventoryModule : InternalModule
+    public abstract class InventoryModule : InternalModule
     {
         public double maxInventorySize;
-        [HideInInspector]
-        public double currentInventorySize;
+        //[HideInInspector]
+        private double currentInventorySize;
 
         /* Inventory START */
         //[HideInInspector]
-        public List<ItemInstance> inventory;
+        private List<ItemInstance> inventory;
 
-        private void OnEnable()
+        public List<ItemInstance> Inventory
         {
-            ItemEvents.OnItemDrop += DropItem;
-            inventory = new List<ItemInstance>();
+            get => inventory; set
+            {
+                inventory = value;
+                OnModuleUpdate?.Invoke(this);
+            }
         }
-        private void OnDisable()
+
+        public double CurrentInventorySize
         {
-            ItemEvents.OnItemDrop -= DropItem;
+            get => currentInventorySize; set
+            {
+                currentInventorySize = value;
+                OnModuleUpdate?.Invoke(this);
+            }
         }
 
         public List<ItemInstance> GetInventory()
         {
-            return inventory;
+            return Inventory;
         }
 
-
-        // Insert an item, return the index where it was inserted.  -1 if error.
-        public bool InsertItem(ItemInstance item,bool useStack)
+        public virtual void AddItem(ItemInstance item,bool useStack)
         {
+            UpdateInventorySize();
             if (HasSpace(item.amount))
             {
-                Debug.Log("theres space for item");
-                if (GetItemOfSameName(item.item.itemName) != null && inventory.Count>0)
+                Debug.Log("Has Space so i continue");
+                if (useStack && Inventory.Count > 0)
                 {
-                    if (useStack)
-                    {
-                        Debug.Log("Placing item on stack");
-                        GetItemOfSameName(item.item.itemName).amount += item.amount;
-                        new ItemEvents().ItemMergedEvent(item);
-                    }
-                    else
-                    {
-                        Debug.Log("Added item as seperate object");
-                        inventory.Add(item);
-                        new ItemEvents().ItemAddedEvent(item);
-                    }
+                    GetItemByName(item.item.itemName).amount += item.amount;
                 }
                 else
                 {
-                    inventory.Add(item);
-                    new ItemEvents().ItemAddedEvent(item);
-                    Debug.Log("Added new item");
+                    Inventory.Add(item);
                 }
                 UpdateInventorySize();
-                
-                return true;
             }
-            Debug.LogError("No Space for item");
-            // Couldn't find a free slot.
-            return false;
+            else
+            {
+                //error: No Space
+                Debug.Log("Not enough space in inventory");
+            }
         }
 
+        public virtual void MergeItem(ItemInstance item)
+        {
+
+        }
+
+
+        public delegate void InventoryModuleUpdate(InventoryModule module);
+        public static event InventoryModuleUpdate OnModuleUpdate;
+
+        //public void ModuleUpdate(InventoryModule module) => OnModuleUpdate?.Invoke(this);
+
+        private void OnEnable()
+        {
+            Inventory = new List<ItemInstance>();
+            ItemEvents.OnItemRemoved += RemoveItem;
+        }
+        
         public bool HasSpace(double amount)
         {
-            if (amount + currentInventorySize > maxInventorySize)
+            if ((amount + CurrentInventorySize) > maxInventorySize)
             {
                 return false;
             }
             return true;
         }
        
-
-        public ItemInstance GetItemOfSameName(string name)
+        public ItemInstance GetItemByName(string name)
         {
-            foreach(ItemInstance a in inventory)
+            foreach(ItemInstance a in Inventory)
             {
                 if(a.item.itemName == name)
                 {
@@ -91,37 +102,61 @@ namespace RRG.InventorySystem
             return null;
         }
 
-
         public void UpdateInventorySize()
         {
-            currentInventorySize = 0;
-            foreach (ItemInstance a in inventory)
+            double t = 0;
+
+            foreach (ItemInstance a in Inventory)
             {
-                currentInventorySize += a.amount;
+                t += a.amount;
             }
+
+            CurrentInventorySize = t;
         }
 
-        public void DropInventory()
+        internal bool HasItem(ItemInstance ite)
         {
-            if (inventory.Count != 0)
+            foreach (ItemInstance a in Inventory)
             {
-                for (int i = 0; i <= inventory.Count; i++)
+                if (a == ite)
                 {
-                    inventory.RemoveAt(0);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool HasSameName(string s)
+        {
+            if (GetItemByName(s)!=null)
+            {
+                return true;
+            }
+            return false;
+
+        }
+
+        public void RemoveInventory()
+        {
+            if (Inventory.Count != 0)
+            {
+                for (int i = 0; i <= Inventory.Count; i++)
+                {
+                    Inventory.RemoveAt(0);
                 }
             }
             UpdateInventorySize();
         }
         
-        public void DropItem(ItemInstance item)
+        public void RemoveItem(ItemInstance item)
         {
-            if (inventory.Contains(item))
+            if (Inventory.Contains(item))
             {
                 //Drop Item as physical cargo
                 Debug.Log("Droping: "+item.item.itemName);
 
                 //remove item from list
-                inventory.Remove(item);
+                Inventory.Remove(item);
                 UpdateInventorySize();
             }
         }

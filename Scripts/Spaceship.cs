@@ -27,16 +27,22 @@ namespace RRG.ControlledObjects
             //installedModules.internalModules.Add(OreBay.Instantiate(bay));
         }
 
+
+        //Debug inputs for the inventorySystem
         public void Update()
         {
-            if (Input.GetKeyDown(KeyCode.I) )
+            if (Input.GetKeyDown(KeyCode.I))
             {
-                AddItemToInventory(new ItemInstance(item, .5),true);
+
+            }
+                if (Input.GetKeyDown(KeyCode.I) )
+            {
+                installedModules.AddItemToAInternalInventoryModule(new ItemInstance(item, .5),true);
             }
 
             if (Input.GetKeyDown(KeyCode.U))
             {
-                AddItemToInventory(new ItemInstance(item2, 5.5),true);
+                installedModules.AddItemToAInternalInventoryModule(new ItemInstance(item2, 5.5),true);
             }
 
 
@@ -48,7 +54,7 @@ namespace RRG.ControlledObjects
                     {
                         Debug.Log("clearing inventory");
 
-                        ((OreBay)installedModules.internalModules[0]).DropInventory();
+                        ((OreBay)installedModules.internalModules[0]).RemoveInventory();
                     }
 
                 }
@@ -70,18 +76,9 @@ namespace RRG.ControlledObjects
             }
         }
 
-        public bool AddItemToInventory(ItemInstance item,bool useStack)
+        public void AddItem(ItemInstance item,bool useStack)
         {
-            //Not working
-            if (installedModules.internalModules.Count != 0 && installedModules.internalModules != null)
-            {
-                Debug.Log("AddItemToInventory: trying to add item to inventory");
-                installedModules.AddItemToAInternalInventoryModule(item, useStack);
-                return true;
-            }
-            //if(item.item is Material)
-            Debug.LogError("Ship has no inventory, please add one.");
-            return false;
+            installedModules.AddItemToAInternalInventoryModule(item,useStack);
         }
     }
 }

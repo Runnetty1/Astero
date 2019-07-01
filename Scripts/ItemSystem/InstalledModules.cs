@@ -34,7 +34,11 @@ namespace RRG.InventorySystem
             {
                 if(mod is OreBay)
                 {
-                    if((mod as OreBay).HasSpace(amount))
+                    //Before we check if any iventory has space, recheck size of it.
+                    //Or we wont be able to split full inventories
+                    (mod as OreBay).UpdateInventorySize();
+
+                    if ((mod as OreBay).HasSpace(amount))
                     {
                         return mod as OreBay;
                     }
@@ -93,21 +97,16 @@ namespace RRG.InventorySystem
             return false;
         }
 
-        
-
         public bool AddItemToAInternalInventoryModule(ItemInstance item,bool useStack)
         {
-            Debug.Log("Installedmods: begining");
+            
             if (item.item is Ore)
             {
-                Debug.Log("Installedmods: item is ore");
-                // Problem arrises here
-                //a item is split and the new item is beeing added, but it wont be because the bay is full...
                 OreBay bay = GetOreBayBySpace(item.amount);
                 if (bay != null)
                 {
-                    Debug.Log("Installedmods: trying to add item to Orebay");
-                    bay.InsertItem(item,useStack);
+                    
+                    bay.AddItem(item,useStack);
                 }
             }
 
@@ -116,10 +115,12 @@ namespace RRG.InventorySystem
                 CargoBay bay = GetCargoBayBySpace(item.amount);
                 if (bay != null)
                 {
-                    bay.InsertItem(item,useStack);
+                    
+                    bay.AddItem(item,useStack);
                 }
             }
             return false;
         }
+
     }
 }

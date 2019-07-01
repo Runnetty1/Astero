@@ -12,10 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 330b1d0916c8c3046b3bd7f7364e95d4, type: 3}
   m_Name: Rysdan Orebay 1
   m_EditorClassIdentifier: 
-  itemName: Rysdan Orebay 1
+  itemName: Orebay
   sprite: {fileID: 21300004, guid: 186ede1a6607db84e922dbba2fd253ac, type: 3}
   rarity: 0
   description: A Orebay
   maxInventorySize: 20
-  currentInventorySize: 0
-  inventory: []

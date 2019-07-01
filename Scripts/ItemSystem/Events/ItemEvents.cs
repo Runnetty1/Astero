@@ -31,10 +31,10 @@ namespace RRG.InventorySystem
 
         public void ItemRightClickEvent(ItemInstance itemInstance,Vector2 pos) => OnItemRightClick?.Invoke(itemInstance,pos);
 
-        public delegate void ItemDroped(ItemInstance item);
-        public static event ItemDroped OnItemDrop;
+        public delegate void ItemRemoved(ItemInstance item);
+        public static event ItemRemoved OnItemRemoved;
 
-        public void ItemDropedEvent(ItemInstance itemInstance) => OnItemDrop?.Invoke(itemInstance);
+        public void ItemRemovedEvent(ItemInstance itemInstance) => OnItemRemoved?.Invoke(itemInstance);
 
 
     }
