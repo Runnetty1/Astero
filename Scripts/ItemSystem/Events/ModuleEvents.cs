@@ -1,7 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-namespace RRG.InventorySystem
+﻿
+using Scripts.ItemSystem.ItemTypes.CargoItems;
+using Scripts.ItemSystem.ItemTypes.CargoItems.Modules;
+
+namespace Scripts.ItemSystem.Events
 {
     public class ModuleEvents
     {
@@ -15,19 +16,27 @@ namespace RRG.InventorySystem
 
         public void ModuleStopedHoverEvent() => OnModuleStopHover?.Invoke();
 
-        public delegate void ModuleInstall(Module item);
-        public static event ModuleInstall OnModuleInstall;
 
-        public void ModuleInstallEvent(Module g) => OnModuleInstall?.Invoke(g);
+        public delegate void ModuleInstallSuccsess(Module item);
+        public static event ModuleInstallSuccsess OnModuleInstallSuccsess;
 
+        public void ModuleInstallSuccsessEvent(Module g) => OnModuleInstallSuccsess?.Invoke(g);
+
+        public delegate void ModuleInstallFail(Module item);
+        public static event ModuleInstallFail OnModuleInstallFail;
+
+        public void ModuleInstallFailEvent(Module g) => OnModuleInstallFail?.Invoke(g);
+
+        /*
         public delegate void InventoryItemAdd(InventoryModule module, ItemInstance item, bool useStack);
         public static event InventoryItemAdd OnModuleItemAdd;
 
         public void ModuleAddItem(InventoryModule module, ItemInstance item, bool useStack) => OnModuleItemAdd?.Invoke(module, item, useStack);
+        */
 
-        public delegate void InventoryItemRemove(InventoryModule module, ItemInstance item);
-        public static event InventoryItemRemove OnModuleItemRemove;
+        public delegate void ModuleUninstall(InventoryModule module, ItemInstance item);
+        public static event ModuleUninstall OnModuleUninstall;
 
-        public void ModuleRemoveItem(InventoryModule module, ItemInstance item) => OnModuleItemRemove?.Invoke(module, item);
+        public void ModuleUninstallEvent(InventoryModule module, ItemInstance item) => OnModuleUninstall?.Invoke(module, item);
     }
 }

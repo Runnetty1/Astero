@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace RRG.InventorySystem
+namespace Scripts.ItemSystem
 {
     public class Dragable : MonoBehaviour//, IBeginDragHandler, IDragHandler, IEndDragHandler
     {

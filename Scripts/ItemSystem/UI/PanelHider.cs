@@ -1,20 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class PanelHider : MonoBehaviour, IPointerExitHandler
+namespace Scripts.ItemSystem.UI
 {
-    public Transform[] subHiders;
-    public void OnPointerExit(PointerEventData eventData)
+    public class PanelHider : MonoBehaviour, IPointerExitHandler
     {
-        foreach(Transform hider in subHiders)
+        public Transform[] subHiders;
+        public void OnPointerExit(PointerEventData eventData)
         {
-            hider.gameObject.SetActive(false);
+            foreach (Transform hider in subHiders)
+            {
+                hider.gameObject.SetActive(false);
+            }
+            gameObject.SetActive(false);
         }
-        gameObject.SetActive(false);
     }
-
-    
-
 }

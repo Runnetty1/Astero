@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace RRG.InventorySystem
+namespace Scripts.ItemSystem
 {
     [System.Serializable]
     public abstract class Item : ScriptableObject
@@ -14,7 +14,6 @@ namespace RRG.InventorySystem
         public ItemRarity rarity;
 
         public string description;
-
 
         public bool Equals(Item a)
         {

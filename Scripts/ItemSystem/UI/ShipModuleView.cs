@@ -1,9 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
-using RRG.ControlledObjects;
+using Scripts.ControlledObjects;
+using Scripts.ItemSystem.ItemTypes.CargoItems;
 
-namespace RRG.InventorySystem
+namespace Scripts.ItemSystem.UI
 {
     public class ShipModuleView : MonoBehaviour
     {

@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using RRG.ControlledObjects.Weapon;
+using Scripts.ControlledObjects.Weapon;
 
-namespace RRG.ControlledObjects.Weapon.Turret.Railgun
+namespace Scripts.ControlledObjects.Weapon.Turret.Railgun
 {
     public class MiningLaser : TurretRotatorBase
     {

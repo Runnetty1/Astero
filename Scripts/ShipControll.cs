@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Assets.Scripts;
-using RRG.ControlledObjects.Weapon;
+using Scripts.ControlledObjects.Weapon;
 
 public class ShipControll : MonoBehaviour {
 

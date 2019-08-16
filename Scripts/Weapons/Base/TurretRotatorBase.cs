@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using RRG.InputHandling.player;
+using Scripts.InputHandling.player;
 
-namespace RRG.ControlledObjects.Weapon
+namespace Scripts.ControlledObjects.Weapon
 {
     public class TurretRotatorBase : TurretBase
     {

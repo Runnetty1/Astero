@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using RRG.UI.Generic;
-using RRG.ControlledObjects.Weapon;
+using Scripts.UI.Generic;
+using Scripts.ControlledObjects.Weapon;
 
-namespace RRG.InputHandling.player
+namespace Scripts.InputHandling.player
 {
     public class InputController : MonoBehaviour {
 

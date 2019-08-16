@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using Scripts.ItemSystem.Events;
+
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace RRG.InventorySystem
+namespace Scripts.ItemSystem.UI
 {
     public class ItemInfoPanel : MonoBehaviour
     {

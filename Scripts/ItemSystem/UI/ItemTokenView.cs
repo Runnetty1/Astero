@@ -1,14 +1,15 @@
-﻿using System.Collections;
+﻿using Scripts.ItemSystem.ItemTypes.CargoItems.Modules;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RRG.InventorySystem
+namespace Scripts.ItemSystem.UI
 {
     public class ItemTokenView : MonoBehaviour
     {
         public Transform itemView;
         public static ItemInstance ite;
-        public static InventoryModule parentMod;
+        public static Inventory parentMod;
         public static bool spliting;
         public Vector2 offset;
 
@@ -19,7 +20,7 @@ namespace RRG.InventorySystem
         }
 
 
-        public void SetItemView(ItemInstance item,InventoryModule modParent,bool splitting)
+        public void SetItemView(ItemInstance item,Inventory modParent,bool splitting)
         {
             itemView.GetComponent<ItemVisualizer>().item = item;
             ite = item;

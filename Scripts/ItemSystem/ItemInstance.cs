@@ -1,7 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
-using RRG.InventorySystem;
-namespace RRG.InventorySystem
+﻿
+namespace Scripts.ItemSystem
 {
     [System.Serializable]
     public class ItemInstance
@@ -14,8 +12,6 @@ namespace RRG.InventorySystem
         {
             this.item = item;
             this.amount = amount;
-        }
-
-        
+        } 
     }
 }

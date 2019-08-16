@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using RRG.InputHandling.player;
+using Scripts.InputHandling.player;
 
 namespace Assets.Scripts
 {

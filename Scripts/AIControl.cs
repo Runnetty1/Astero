@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using RRG.ControlledObjects.Weapon;
+using Scripts.ControlledObjects.Weapon;
 
 public class AIControl : MonoBehaviour {
 	

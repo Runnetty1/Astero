@@ -1,11 +1,10 @@
-﻿using RRG.ControlledObjects;
-using System.Collections;
-using System.Collections.Generic;
+﻿using Scripts.ControlledObjects;
+using Scripts.ItemSystem.Events;
+using Scripts.ItemSystem.ItemTypes.CargoItems;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace RRG.InventorySystem
+namespace Scripts.ItemSystem.UI
 {
     public class InteractionMenuPanel : MonoBehaviour
     {
@@ -26,6 +25,7 @@ namespace RRG.InventorySystem
         private void OnEnable()
         {
             ItemEvents.OnItemRightClick += ShowMenu;
+            
         }
 
         public void ShowMenu(ItemInstance item,Vector2 pos)
@@ -65,5 +65,13 @@ namespace RRG.InventorySystem
             panel.gameObject.SetActive(false);
             splitPanel.gameObject.SetActive(false);
         }
+
+        public void InstallModuleToShip()
+        {
+            ship.InstallModule(item.item as Module,0);
+            HidePanel();
+        }
+
+
     }
 }

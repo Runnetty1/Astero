@@ -1,17 +1,62 @@
-﻿using RRG.InventorySystem;
-using System.Collections;
-using System.Collections.Generic;
+﻿
+using Scripts.ItemSystem.UI;
 using UnityEngine;
 
-namespace RRG
+namespace Scripts.UI
 {
+    
     public class ClientUI : MonoBehaviour
     {
-        public static Player player;
-        public static ItemInfoPanel mouseHoverPanel;
-        public static InteractionMenuPanel interactionMenu;
-        public static ItemTokenView itemToken;
-        public static InventoryView inventory;
+        
+        public Player player;
+        public ItemInfoPanel mouseHoverPanel;
+        public InteractionMenuPanel interactionMenu;
+        public ItemTokenView itemToken;
+        public InventoryView cargoView;
+        public InventoryView hangarView;
+        public InventoryView orebayView;
+        public InventoryView droneBayView;
 
+        private void OnEnable()
+        {
+            cargoView.inventory = player.controllingShip.cargoBay;
+            hangarView.inventory = player.controllingShip.hangarBay;
+            orebayView.inventory = player.controllingShip.oreBay;
+            droneBayView.inventory = player.controllingShip.droneBay;
+
+            cargoView.Instantiate();
+            droneBayView.Instantiate();
+            //Enable/disable view
+            if (player.controllingShip.hasOreBay)
+            {
+                //orebayView.gameObject.SetActive(true);
+                orebayView.Instantiate();
+            }
+            else
+            {
+                //orebayView.gameObject.SetActive(false);
+            }
+            //Enable/disable view
+            if (player.controllingShip.hasHangar)
+            {
+                //hangarView.gameObject.SetActive(true);
+                hangarView.Instantiate();
+            }
+            else
+            {
+                //hangarView.gameObject.SetActive(false);
+            }
+
+            //Enable/disable view
+            if (player.controllingShip.hasDroneBay)
+            {
+                //droneBayView.gameObject.SetActive(true);
+                
+            }
+            else
+            {
+                droneBayView.gameObject.SetActive(false);
+            }
+        }
     }
 }

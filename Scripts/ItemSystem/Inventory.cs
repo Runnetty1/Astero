@@ -1,7 +1,10 @@
-﻿using System.Collections;
+﻿using Scripts.ItemSystem.Events;
+using Scripts.ItemSystem.ItemTypes.CargoItems;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-namespace RRG.InventorySystem
+
+namespace Scripts.ItemSystem
 {
     [System.Serializable]
     public class Inventory
@@ -9,10 +12,17 @@ namespace RRG.InventorySystem
         
         public double defMaxSize;
         public double addedMaxSize;
+
+
         private double currentInventorySize;
 
+        public delegate void InventoryUpdate(Inventory inv);
+        public static event InventoryUpdate OnInventoryUpdate;
+
+        public void InventoryUpdateEvent(Inventory inv) => OnInventoryUpdate?.Invoke(this);
+
         /* Inventory START */
-        //[HideInInspector]
+        [SerializeField]
         private List<ItemInstance> itemList;
 
         public List<ItemInstance> ItemList
@@ -20,39 +30,54 @@ namespace RRG.InventorySystem
             get => itemList; set
             {
                 itemList = value;
-               OnInventoryUpdate?.Invoke(this);
+               //OnInventoryUpdate?.Invoke(this);
             }
+        }
+
+        public double GetTotalMaxInventorySize()
+        {
+            return defMaxSize + addedMaxSize;
         }
 
         public double CurrentInventorySize
         {
-            get => currentInventorySize; set
+            get {
+                double t = 0;
+
+                foreach (ItemInstance a in ItemList)
+                {
+                    t += a.amount;
+                }
+
+                currentInventorySize = t;
+                return currentInventorySize;
+            } set
             {
                 currentInventorySize = value;
-               OnInventoryUpdate?.Invoke(this);
+               
             }
         }
 
         public List<ItemInstance> GetInventory()
         {
-            return ItemList;
+            List<ItemInstance> list = itemList;
+            return list;
         }
 
-        public virtual void AddItem(ItemInstance item, bool useStack)
+        public void AddItem(ItemInstance item, bool useStack)
         {
-            UpdateInventorySize();
             if (HasSpace(item.amount))
             {
-                
                 if (useStack && ItemList.Count > 0)
                 {
                     GetItemByName(item.item.itemName).amount += item.amount;
+                    OnInventoryUpdate?.Invoke(this);
                 }
                 else
                 {
                     ItemList.Add(item);
+                    OnInventoryUpdate?.Invoke(this);
                 }
-                UpdateInventorySize();
             }
             else
             {
@@ -61,30 +86,30 @@ namespace RRG.InventorySystem
             }
         }
 
-        public virtual void MergeItem(ItemInstance item)
+
+        public void RemoveInstalledModule(Module mod)
         {
+            List<ItemInstance> t = GetInventory();
+            for (int i = 0; i < t.Count; i++)
+            {
+                ItemInstance item = t[i];
+                if (item.item == mod)
+                {
+                    t.Remove(item);
+                }
+            }
+            ItemList = t;
+            OnInventoryUpdate?.Invoke(this);
 
-        }
-
-
-        public delegate void InventoryModuleUpdate(Inventory inv);
-        public static event InventoryModuleUpdate OnInventoryUpdate;
-
-        //public void ModuleUpdate(InventoryModule module) => OnModuleUpdate?.Invoke(this);
-
-        private void OnEnable()
-        {
-            ItemList = new List<ItemInstance>();
-            ItemEvents.OnItemRemoved += RemoveItem;
         }
 
         public bool HasSpace(double amount)
         {
-            /*
-            if ((amount + CurrentInventorySize) > maxInventorySize)
+            
+            if ((amount + CurrentInventorySize) > GetTotalMaxInventorySize())
             {
                 return false;
-            }*/
+            }
             return true;
         }
 
@@ -98,18 +123,6 @@ namespace RRG.InventorySystem
                 }
             }
             return null;
-        }
-
-        public void UpdateInventorySize()
-        {
-            double t = 0;
-
-            foreach (ItemInstance a in ItemList)
-            {
-                t += a.amount;
-            }
-
-            CurrentInventorySize = t;
         }
 
         internal bool HasItem(ItemInstance ite)
@@ -143,7 +156,6 @@ namespace RRG.InventorySystem
                     ItemList.RemoveAt(0);
                 }
             }
-            UpdateInventorySize();
         }
 
         public void RemoveItem(ItemInstance item)
@@ -155,7 +167,6 @@ namespace RRG.InventorySystem
 
                 //remove item from list
                 ItemList.Remove(item);
-                UpdateInventorySize();
             }
         }
 

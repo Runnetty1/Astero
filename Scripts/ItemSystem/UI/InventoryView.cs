@@ -1,75 +1,66 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Scripts.ItemSystem.ItemTypes.CargoItems.Modules;
+
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace RRG.InventorySystem
+namespace Scripts.ItemSystem.UI
 {
     public class InventoryView : MonoBehaviour, IDropHandler
     {
-        public InternalModule internalModule;
+        //Set by Client UI
+        [SerializeField]
+        public Inventory inventory;
+        //Where to place item panels
         public GameObject contentObj;
+        //What itemView
         public GameObject itemPanel;
-        public Text SizeText, nameText;
-        private double cargoSize;
+        //Size of inventory
+        public Text SizeText;
+        
+        //padding between items
         public float padding;
-        // Start is called before the first frame update
+        
         public void Instantiate()
         {
+            SizeText.text = ""+inventory.CurrentInventorySize+" / "+inventory.GetTotalMaxInventorySize()+" m3";
+
             foreach (Transform child in contentObj.transform)
             {
                 GameObject.Destroy(child.gameObject);
             }
-            if (internalModule != null)
-            {
-                if (internalModule is InventoryModule)
-                {
-                    /*
-                    if (((InventoryModule)internalModule).GetInventory()!=null)
-                    {
-                        foreach (ItemInstance item in ((InventoryModule)internalModule).GetInventory())
-                        {
-                            if (item != null)
-                            {
-                                GameObject module = (GameObject)Instantiate(itemPanel, contentObj.transform.position, Quaternion.identity, contentObj.transform);
-                                module.GetComponent<ItemVisualizer>().item = item;
-                                module.GetComponent<ItemVisualizer>().Instantiate();
-                                //cargoSize += item.amount;
-                            }
-                        }
-                    }
-                    */
 
+            if (inventory != null)
+            {
+                foreach (ItemInstance item in inventory.GetInventory())
+                {
+                    if (item != null)
+                    {
+                        GameObject module = (GameObject)Instantiate(itemPanel, contentObj.transform.position, Quaternion.identity, contentObj.transform);
+                        module.GetComponent<ItemVisualizer>().item = item;
+                        module.GetComponent<ItemVisualizer>().Instantiate();
+                        
+                    }
                 }
 
             }
 
-            //SizeText.text = "" + (internalModule as InventoryModule).CurrentInventorySize + " / " + (internalModule as InventoryModule).maxInventorySize + " m3";
-            nameText.text = internalModule.itemName;
         }
 
         private void OnEnable()
         {
-            //InventoryModule.OnModuleUpdate += UpdateInventoryView;
+           Inventory.OnInventoryUpdate += UpdateInventoryView;
+            
         }
 
-        public void UpdateInventoryView(ItemInstance item)
+        public void UpdateInventoryView(Inventory mod)
         {
-            Instantiate();
-            Debug.Log("updatingInventroyView");
-        }
-
-        public void UpdateInventoryView(InventoryModule mod)
-        {
-            if (mod == (internalModule is InventoryModule))
-            {
-                Instantiate();
-            }
+            if(mod==this.inventory)
+                Instantiate(); 
         }
         public void Update()
         {
-            this.GetComponent<LayoutElement>().minHeight = 34 + contentObj.GetComponent<RectTransform>().sizeDelta.y + padding;
+            //this.GetComponent<LayoutElement>().minHeight = 34 + contentObj.GetComponent<RectTransform>().sizeDelta.y + padding;
             
         }
 

@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
-using RRG.ControlledObjects;
+using Scripts.ControlledObjects;
 using System.Collections.Generic;
 using UnityEngine.UI;
-using RRG.InventorySystem;
+using Scripts.ItemSystem;
 
-namespace RRG
+namespace Scripts
 {
     public class Player : MonoBehaviour
     {
@@ -14,25 +14,17 @@ namespace RRG
         public Faction.Factions faction = Faction.Factions.Terra;
         public Spaceship controllingShip;
 
-        //Test Objects
-        public Item item;
-        public Item item2;
-        public OreBay bay;
-        public CargoBay bay2;
-
-
         public void Start()
         {
             //installedModules.internalModules.Add(OreBay.Instantiate(bay));
         }
-
 
         //Debug inputs for the inventorySystem
         public void Update()
         {
             if (Input.GetKeyDown(KeyCode.I))
             {
-
+                
             }
             if (Input.GetKeyDown(KeyCode.I))
             {

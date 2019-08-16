@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
 
-namespace RRG.InventorySystem
+namespace Scripts.ItemSystem.Events
 {
     public class ItemEvents
     {

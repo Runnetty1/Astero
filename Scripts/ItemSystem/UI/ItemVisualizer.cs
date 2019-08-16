@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿using Scripts.ItemSystem.Events;
+using Scripts.ItemSystem.ItemTypes.CargoItems.Modules;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace RRG.InventorySystem
+namespace Scripts.ItemSystem.UI
 {
     public class ItemVisualizer : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,IPointerClickHandler, IBeginDragHandler, IEndDragHandler, IDragHandler, IDropHandler
     {
@@ -61,10 +63,10 @@ namespace RRG.InventorySystem
             }
         }
 
-        public delegate void ItemVisualDragStart(ItemInstance item,InventoryModule mod,bool split);
+        public delegate void ItemVisualDragStart(ItemInstance item,Inventory inv,bool split);
         public static event ItemVisualDragStart OnItemDrag;
 
-        public void ItemBeginDrag(ItemInstance item, InventoryModule mod,bool split) => OnItemDrag?.Invoke(item, mod,split);
+        public void ItemBeginDrag(ItemInstance item, Inventory inv,bool split) => OnItemDrag?.Invoke(item, inv,split);
 
         public delegate void ItemVisualDragStop();
         public static event ItemVisualDragStop OnItemDragStop;
@@ -81,11 +83,11 @@ namespace RRG.InventorySystem
                 Debug.Log("Spliting");
                 ItemInstance it = new ItemInstance(item.item,item.amount/2);
                 item.amount /= 2;
-                ItemBeginDrag(it, (GetComponentInParent<InventoryView>().internalModule as InventoryModule),true);
+                ItemBeginDrag(it, GetComponentInParent<InventoryView>().inventory,true);
             }
             else
             {
-                ItemBeginDrag(item, (GetComponentInParent<InventoryView>().internalModule as InventoryModule),false);
+                ItemBeginDrag(item, (GetComponentInParent<InventoryView>().inventory),false);
             }  
         }
 
