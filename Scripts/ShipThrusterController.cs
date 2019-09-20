@@ -14,11 +14,13 @@ public class ShipThrusterController : MonoBehaviour
     public GameObject[] MainLeft,MainRight,front;
     public GameObject[] backLeft, backRight,frontRight,frontLeft;
 
+    public GameObject MainThrusterSound;
+    public GameObject SideThrusterSound;
+
     public float thrusterDeadZone  = 0.5f;
 
     public void Thruster(GameObject[] thrusters,bool state)
     {
-
         foreach(GameObject g in thrusters)
         {
             g.SetActive(state);
@@ -30,12 +32,11 @@ public class ShipThrusterController : MonoBehaviour
         localMoveSpeed = (Vector2)transform.InverseTransformDirection(transform.GetComponent<Rigidbody2D>().velocity);
         
 
-        
-
         if (dir == ShipMoveDir.Left)
         {
             Thruster(backLeft, true);
             Thruster(frontRight, true);
+            
         }
         else
         {
@@ -46,6 +47,7 @@ public class ShipThrusterController : MonoBehaviour
         {
             Thruster(backRight, true);
             Thruster(frontLeft, true);
+            
         }
         else
         {
@@ -58,11 +60,13 @@ public class ShipThrusterController : MonoBehaviour
         {
             Thruster(backLeft, true);
             Thruster(frontLeft, true);
+            
         }
         else if (localMoveSpeed.y < -thrusterDeadZone && dir != ShipMoveDir.Right)
         {
             Thruster(frontRight, true);
             Thruster(backRight, true);
+            
         }
        else if (dir == ShipMoveDir.none)
         {
@@ -70,6 +74,7 @@ public class ShipThrusterController : MonoBehaviour
             Thruster(frontLeft, false);
             Thruster(frontRight, false);
             Thruster(backRight, false);
+            
         }
 
         if (state == ShipMove.Forward)
@@ -77,12 +82,14 @@ public class ShipThrusterController : MonoBehaviour
             Thruster(MainLeft, true);
             Thruster(MainRight, true);
             Thruster(front, false);
+            
         }
         else if (localMoveSpeed.x > thrusterDeadZone && state != ShipMove.Forward)
         {
             Thruster(front, true);
             Thruster(MainLeft, false);
             Thruster(MainRight, false);
+            
         }
         else if (state == ShipMove.Backward)
         {
@@ -102,8 +109,33 @@ public class ShipThrusterController : MonoBehaviour
             Thruster(MainRight, false);
             Thruster(front, false);
         }
+        AudioUpdate();
+
+    }
+    public void AudioUpdate()
+    {
+        
+        if (state == ShipMove.Forward && !MainThrusterSound.GetComponent<AudioSource>().isPlaying)
+        {
+            //mainthuster
+
+            MainThrusterSound.GetComponent<AudioSource>().Play();
+        }
+        else if(state != ShipMove.Forward)
+        {
+            MainThrusterSound.GetComponent<AudioSource>().Stop();
+        }
 
 
+        if(dir  !=  ShipMoveDir.none && !SideThrusterSound.GetComponent<AudioSource>().isPlaying)
+        {
+            //side thrusters
+            SideThrusterSound.GetComponent<AudioSource>().Play();
+        }
+        else if(dir == ShipMoveDir.none)
+        {
+            SideThrusterSound.GetComponent<AudioSource>().Stop();
+        }
     }
 
 }

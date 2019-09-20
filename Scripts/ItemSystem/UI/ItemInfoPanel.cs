@@ -49,11 +49,8 @@ namespace Scripts.ItemSystem.UI
 
         private void Update()
         {
-            var screenPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            
-
-            Vector2  mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            this.transform.position = mousePos+mouseOffset;
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            this.transform.position = mousePos + mouseOffset;
         }
     }
 }

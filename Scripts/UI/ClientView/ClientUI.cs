@@ -8,7 +8,7 @@ namespace Scripts.UI
     public class ClientUI : MonoBehaviour
     {
         
-        public Player player;
+        public Actor player;
         public ItemInfoPanel mouseHoverPanel;
         public InteractionMenuPanel interactionMenu;
         public ItemTokenView itemToken;
@@ -19,43 +19,51 @@ namespace Scripts.UI
 
         private void OnEnable()
         {
-            cargoView.inventory = player.controllingShip.cargoBay;
-            hangarView.inventory = player.controllingShip.hangarBay;
-            orebayView.inventory = player.controllingShip.oreBay;
-            droneBayView.inventory = player.controllingShip.droneBay;
+            Instantiate();
+        }
 
-            cargoView.Instantiate();
-            droneBayView.Instantiate();
-            //Enable/disable view
-            if (player.controllingShip.hasOreBay)
+        public void Instantiate()
+        {
+            if (player != null)
             {
-                //orebayView.gameObject.SetActive(true);
-                orebayView.Instantiate();
-            }
-            else
-            {
-                //orebayView.gameObject.SetActive(false);
-            }
-            //Enable/disable view
-            if (player.controllingShip.hasHangar)
-            {
-                //hangarView.gameObject.SetActive(true);
-                hangarView.Instantiate();
-            }
-            else
-            {
-                //hangarView.gameObject.SetActive(false);
-            }
+                cargoView.inventory = player.controllingShip.cargoBay;
+                hangarView.inventory = player.controllingShip.hangarBay;
+                orebayView.inventory = player.controllingShip.oreBay;
+                droneBayView.inventory = player.controllingShip.droneBay;
 
-            //Enable/disable view
-            if (player.controllingShip.hasDroneBay)
-            {
-                //droneBayView.gameObject.SetActive(true);
-                
-            }
-            else
-            {
-                droneBayView.gameObject.SetActive(false);
+                cargoView.Instantiate();
+                droneBayView.Instantiate();
+                //Enable/disable view
+                if (player.controllingShip.hasOreBay)
+                {
+                    //orebayView.gameObject.SetActive(true);
+                    orebayView.Instantiate();
+                }
+                else
+                {
+                    //orebayView.gameObject.SetActive(false);
+                }
+                //Enable/disable view
+                if (player.controllingShip.hasHangar)
+                {
+                    //hangarView.gameObject.SetActive(true);
+                    hangarView.Instantiate();
+                }
+                else
+                {
+                    //hangarView.gameObject.SetActive(false);
+                }
+
+                //Enable/disable view
+                if (player.controllingShip.hasDroneBay)
+                {
+                    //droneBayView.gameObject.SetActive(true);
+
+                }
+                else
+                {
+                    droneBayView.gameObject.SetActive(false);
+                }
             }
         }
     }

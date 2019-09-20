@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Scripts.UI.Generic;
-using Scripts.ControlledObjects.Weapon;
+﻿using UnityEngine;
+
 
 namespace Scripts.InputHandling.player
 {
@@ -13,7 +10,7 @@ namespace Scripts.InputHandling.player
         public string leftRight;
         public string upDown;
         public string fire;
-        public Player player;
+        public Actor player;
         
         private bool one_click;
         private float timer_for_double_click;
@@ -41,10 +38,14 @@ namespace Scripts.InputHandling.player
         // Update is called once per frame
         void Update()
         {
+            //CLIENT ONLY
             
             if (!NoInputs && !WindowsActive)
             {
-                DetectInput();
+                if (player != null)
+                {
+                    DetectInput();
+                }
                 CheckForMouse1ClickEvents();
                 if (Input.GetAxis("Mouse ScrollWheel") > 0f) // forward
                 {
@@ -74,7 +75,7 @@ namespace Scripts.InputHandling.player
 
         private void OnEnable()
         {
-            ShipControll.OnShipWarpEvent += PlayerWarping;    
+            ShipControll.OnShipWarpEvent += PlayerWarping;
         }
 
         private void PlayerWarping(bool a)
@@ -120,41 +121,41 @@ namespace Scripts.InputHandling.player
             ///LEFT
             if (Input.GetAxis(leftRight) < 0f)
             {
-                player.GetComponent<ShipControll>().Left();
-                player.GetComponent<ShipThrusterController>().dir = ShipThrusterController.ShipMoveDir.Left;
+                player.controllingShip.gameObject.GetComponent<ShipControll>().Left();
+                player.controllingShip.gameObject.GetComponent<ShipThrusterController>().dir = ShipThrusterController.ShipMoveDir.Left;
             }else
             //RIGHT
             if (Input.GetAxis(leftRight) > 0f)
             {
                 
-                player.GetComponent<ShipControll>().Right();
-                player.GetComponent<ShipThrusterController>().dir = ShipThrusterController.ShipMoveDir.Right;
+                player.controllingShip.gameObject.GetComponent<ShipControll>().Right();
+                player.controllingShip.gameObject.GetComponent<ShipThrusterController>().dir = ShipThrusterController.ShipMoveDir.Right;
             }
             else
             {
-                player.GetComponent<ShipThrusterController>().dir = ShipThrusterController.ShipMoveDir.none;
+                player.controllingShip.gameObject.GetComponent<ShipThrusterController>().dir = ShipThrusterController.ShipMoveDir.none;
             }
             ///UP DOWN
             if (Input.GetAxis(upDown) < 0f)
             {
                 //Debug.Log("down");
-                player.GetComponent<ShipControll>().Backward();
-                player.GetComponent<ShipThrusterController>().state = ShipThrusterController.ShipMove.Backward;
+                player.controllingShip.gameObject.GetComponent<ShipControll>().Backward();
+                player.controllingShip.gameObject.GetComponent<ShipThrusterController>().state = ShipThrusterController.ShipMove.Backward;
             }
             else if (Input.GetAxis(upDown) > 0f)
             {
                 //Debug.Log("up");
-                player.GetComponent<ShipControll>().Forward();
-                player.GetComponent<ShipThrusterController>().state = ShipThrusterController.ShipMove.Forward;
+                player.controllingShip.gameObject.GetComponent<ShipControll>().Forward();
+                player.controllingShip.gameObject.GetComponent<ShipThrusterController>().state = ShipThrusterController.ShipMove.Forward;
             }
             else
             {
-                player.GetComponent<ShipThrusterController>().state = ShipThrusterController.ShipMove.none;
+                player.controllingShip.gameObject.GetComponent<ShipThrusterController>().state = ShipThrusterController.ShipMove.none;
             }
             if (Input.GetAxis(fire) > 0f)
             {
                 //Debug.Log("Fire");
-                player.GetComponent<ShipControll>().Fire();
+                player.controllingShip.gameObject.GetComponent<ShipControll>().Fire();
             }
 
             if (Input.GetKeyDown(KeyCode.M))

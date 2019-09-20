@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.Game;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,6 +12,7 @@ public class LocationVisualiser : MonoBehaviour
 
     public float turnSpeed;
 
+    public GameObject iconOwner;
 
     void Update()
     {
@@ -29,13 +32,18 @@ public class LocationVisualiser : MonoBehaviour
     }
 
 
-    public void SetCruiseTarget(GameObject target)
+    public void SetTarget(GameObject target)
     {
         goTarget = target;
     }
-    public GameObject GetCruiseTarget ()
+    public GameObject GetTarget ()
     {
         return goTarget;
     }
 
+    internal void SetIcon(Sprite icon,Faction.Factions a, Faction.Factions b)
+    {
+        iconOwner.GetComponent<Image>().sprite = icon;
+        iconOwner.GetComponent<Image>().color = GameObject.Find("GameHandler").GetComponent<GameHandler>().faction.GetColorOfFaction(a,b);
+    }
 }

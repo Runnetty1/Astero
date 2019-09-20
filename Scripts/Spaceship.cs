@@ -6,12 +6,14 @@ using Scripts.ItemSystem.ItemTypes.CargoItems;
 using Scripts.ItemSystem.ItemTypes;
 using Scripts.ItemSystem.Events;
 using Assets.Scripts.ItemSystem.ItemTypes;
+using Assets.Scripts.LocatingSystem;
 
 namespace Scripts.ControlledObjects
 {
     [System.Serializable]
-    public class Spaceship : MonoBehaviour
+    public class Spaceship : ScanableObject
     {
+        public Actor owner;
         public ModuleSlots ModuleSlots;
         public Inventory cargoBay;
 
@@ -23,6 +25,10 @@ namespace Scripts.ControlledObjects
         public bool hasDroneBay;
         public Inventory droneBay;
 
+        public GameObject hitAudio;
+        public AudioClip[] clip;
+
+        public Radar radar;
 
         //ShipMovement
         //Ship Turrets
@@ -70,10 +76,20 @@ namespace Scripts.ControlledObjects
         //OnSuccessfulModuleInstall
         private void OnEnable()
         {
-            
+            radar = GetComponent<Radar>();
+            if (radar == null)
+            {
+                gameObject.AddComponent<Radar>();
+            }
             ItemEvents.OnItemRemoved += cargoBay.RemoveItem;
             ModuleEvents.OnModuleInstallSuccsess += cargoBay.RemoveInstalledModule;
         }
         //OnSuccessfulModuleUninstall
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+          
+            hitAudio.GetComponent<AudioSource>().PlayOneShot(clip[Random.Range(0, clip.Length)]);
+        }
     }
 }
