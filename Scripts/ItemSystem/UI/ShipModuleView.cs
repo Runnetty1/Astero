@@ -1,9 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
-using RRG.ControlledObjects;
+using Scripts.ControlledObjects;
+using Scripts.ItemSystem.ItemTypes.CargoItems;
 
-namespace RRG.InventorySystem
+namespace Scripts.ItemSystem.UI
 {
     public class ShipModuleView : MonoBehaviour
     {
@@ -16,22 +16,38 @@ namespace RRG.InventorySystem
         // Start is called before the first frame update
         void Start()
         {
-            if (spaceship.installedModules.internalModules != null && spaceship.installedModules.internalModules.Count != 0)
+            /*
+            if (spaceship.ModuleSlots.internalModules != null && spaceship.ModuleSlots.internalModules.Count != 0)
             {
-                foreach (InternalModule imod in spaceship.installedModules.internalModules)
+                foreach (InternalModule imod in spaceship.ModuleSlots.internalModules)
                 {
                     if (imod != null)
                     {
-                        GameObject module = (GameObject)Instantiate(modulePanel, contentObj.transform.position, Quaternion.identity, contentObj.transform);
-                        module.GetComponent<InventoryView>().internalModule = imod;
-                        module.GetComponent<InventoryView>().Instantiate();
+                        AddModuleView(imod);
                     }
                 }
-            }
+            }*/
         }
 
-        // Update is called once per frame
-        void Update()
+        private void OnEnable()
+        {
+            //ModuleEvents.OnModuleInstall += AddModuleView;
+        }
+
+        public void AddModuleView(Module mod)
+        {
+            /*
+            if(mod != null)
+            {
+                if (mod is InternalModule)
+                {
+                    GameObject module = (GameObject)Instantiate(modulePanel, contentObj.transform.position, Quaternion.identity, contentObj.transform);
+                    module.GetComponent<InventoryView>().internalModule = mod as InternalModule;
+                    module.GetComponent<InventoryView>().Instantiate();
+                }
+            }*/
+        }
+        public void RemoveModuleView()
         {
 
         }

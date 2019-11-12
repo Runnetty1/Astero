@@ -1,13 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Assets.Scripts;
-using RRG.ControlledObjects.Weapon;
+using Scripts.ControlledObjects.Weapon;
+using Assets.Scripts.Util;
 
 public class ShipControll : MonoBehaviour {
 
 
 	public float accel;
 	public float turnSpeed;
+    public double warpMultiplier;
     public GameObject LargeTrail;
 	public TurretBase[] ShipTurret;
     public GameObject turretParent;
@@ -28,6 +30,10 @@ public class ShipControll : MonoBehaviour {
 
     public delegate void ShipWarpEvent(bool a);
     public static event ShipWarpEvent OnShipWarpEvent;
+    public Vector3 startPos;
+    public double startTime;
+    public double speed;
+    public string speed2;
 
     private void OnEnable()
     {
@@ -42,8 +48,8 @@ public class ShipControll : MonoBehaviour {
     void Update () {
         if (cruiseTarget != null && warpMove)
         {
-            targetDistance = (cruiseTarget.transform.position - transform.position).sqrMagnitude;
-            if (targetDistance < 100f)
+            targetDistance = Vector3.Distance(cruiseTarget.transform.position, transform.position);
+            if (targetDistance < 10f)
             {
                 Camera.main.GetComponent<CameraController>().shakeCamera = false;
                 //Arived at target
@@ -56,14 +62,15 @@ public class ShipControll : MonoBehaviour {
             }
             ParticleSystem ps = CruiseAnim[1].GetComponent<ParticleSystem>();
             var forceDir = ps.forceOverLifetime;
-            float var = ((transform.GetComponent<Rigidbody2D>().velocity.sqrMagnitude) * (transform.GetComponent<Rigidbody2D>().velocity.sqrMagnitude)) / 20f;
-            var = Mathf.Clamp(var,1000f,7000f);
+            float var = transform.GetComponent<Rigidbody2D>().velocity.sqrMagnitude;
+            //var = Mathf.Clamp(var,1000f,7000000f);
             //EmissionDir
             var dir = cruiseTarget.transform.position - this.gameObject.transform.position;
-            
-            forceDir.x = dir.y;
-            forceDir.y = dir.x;
-            forceDir.z = dir.z;
+
+            //forceDir.x = dir.y;
+            //forceDir.y = dir.x;
+            //forceDir.z = dir.z;
+            speed2 = ValueConvert.Instance.getConvertedValue(var*10);
         }
 
         if (!cruisingToTarget)
@@ -74,9 +81,9 @@ public class ShipControll : MonoBehaviour {
         else
         {
             LookAtCruiseTarget();
-            if (warpMove && (cruiseTarget.transform.position - transform.position).sqrMagnitude > 2000f)
+            if (warpMove && targetDistance > 100f)
             {
-                this.transform.GetComponent<Rigidbody2D>().AddRelativeForce(Vector2.right * Time.smoothDeltaTime * (accel * GetComponent<Rigidbody2D>().mass * 30), ForceMode2D.Force);
+                this.transform.GetComponent<Rigidbody2D>().AddRelativeForce(Vector2.right * Time.smoothDeltaTime * (accel * GetComponent<Rigidbody2D>().mass * (float)warpMultiplier), ForceMode2D.Force);
             }
         }
 	}
@@ -116,7 +123,7 @@ public class ShipControll : MonoBehaviour {
     {
         cruisingToTarget = true;
         OnShipWarpEvent?.Invoke(true);
-        initialTargetDistance =(cruiseTarget.transform.position - transform.position).magnitude;
+        initialTargetDistance = Vector3.Distance(cruiseTarget.transform.position, transform.position);
         GetComponent<CircleCollider2D>().enabled = false;
         StartCoroutine(EnableCruiseParticles());
         
@@ -147,7 +154,7 @@ public class ShipControll : MonoBehaviour {
         yield return new WaitForSeconds(1);
         ///emission.enabled = false;
 
-        ps = CruiseAnim[1].GetComponent<ParticleSystem>();
+       // ps = CruiseAnim[1].GetComponent<ParticleSystem>();
         emission = ps.emission;
         //emission.enabled = true;
         LargeTrail.gameObject.SetActive(true);
@@ -169,8 +176,6 @@ public class ShipControll : MonoBehaviour {
         emission = ps.emission;
         emission.enabled = false;
         LargeTrail.gameObject.SetActive(false);
-
-
     }
 
 

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
-using RRG.InputHandling.player;
+using Scripts.InputHandling.player;
+using Scripts;
 
 namespace Assets.Scripts
 {
@@ -43,6 +44,16 @@ namespace Assets.Scripts
         public float _ZoomAmount = 1f;
         public float _distance = 20f;
         public float _smoothing = 20f;
+
+        public enum CameraMode {SelfMove,Follow,none}
+        public CameraMode camMode;
+
+        public float panBorderThickness;
+        public float panSpeed;
+        public float dist;
+
+        public Vector2 midScreen;
+        public Vector3 mousePos;
         #endregion
 
         #region Methods
@@ -51,35 +62,71 @@ namespace Assets.Scripts
         private void FixedUpdate()
         {
             this.GetComponent<Camera>().orthographicSize = Mathf.Lerp(this.GetComponent<Camera>().orthographicSize, _distance, Time.smoothDeltaTime * _smoothing);
-            if (shakeCamera && needsNewPos)
+            if (camMode == CameraMode.Follow)
             {
-                needsNewPos = false;
-                //new shakepos
-                float x =Mathf.Lerp(Random.Range(-shakeAmount.x, shakeAmount.x), _offset.x, Time.smoothDeltaTime * _SmoothTime);
-                float y =Mathf.Lerp(Random.Range(-shakeAmount.y, shakeAmount.y), _offset.y, Time.smoothDeltaTime * _SmoothTime);
-                _offset = new Vector3(x, y) ;
-                //cooldoqwnthis
-                StartCoroutine(ShakeCooldown());
-            }
-			// Get target pos.
-			Vector3 destination = this.transform.position + _offset;
 
-            if (this._target != null)
+
+                
+                if (shakeCamera && needsNewPos)
+                {
+                    needsNewPos = false;
+                    //new shakepos
+                    float x = Mathf.Lerp(Random.Range(-shakeAmount.x, shakeAmount.x), _offset.x, Time.smoothDeltaTime * _SmoothTime);
+                    float y = Mathf.Lerp(Random.Range(-shakeAmount.y, shakeAmount.y), _offset.y, Time.smoothDeltaTime * _SmoothTime);
+                    _offset = new Vector3(x, y);
+                    //cooldoqwnthis
+                    StartCoroutine(ShakeCooldown());
+                }
+                // Get target pos.
+                Vector3 destination = this.transform.position + _offset;
+
+                if (this._target != null)
+                {
+                    // Set Delta Position for the Camera
+                    Vector3 point = this.GetComponent<Camera>().WorldToViewportPoint(this._target.position);
+                    Vector3 delta = this._target.position - this.GetComponent<Camera>().ViewportToWorldPoint(new Vector3(0.5f, 0.5f, point.z));
+                    destination += delta;
+                }
+                else
+                {
+
+                    //No target Use self movement
+
+                    //Find Player and set as target
+                    this._target = (Transform)GameObject.Find("Player").GetComponent<Actor>().controllingShip.transform;
+                }
+                // Set Camera position
+                this.transform.position = Vector3.SmoothDamp(
+                    this.transform.position,
+                    destination,
+                    ref this._velocity,
+                    this._SmoothTime);
+            }
+            if (camMode == CameraMode.SelfMove)
             {
-				// Set Delta Position for the Camera
-                Vector3 point = this.GetComponent<Camera>().WorldToViewportPoint(this._target.position);
-                Vector3 delta = this._target.position - this.GetComponent<Camera>().ViewportToWorldPoint(new Vector3(0.5f, 0.5f, point.z));
-                destination += delta;
-			}else{
-				//Find Player and set as target
-				this._target = (Transform) GameObject.Find("player").transform;
-			}
-			// Set Camera position
-            this.transform.position = Vector3.SmoothDamp(
-                this.transform.position,
-                destination,
-                ref this._velocity,
-                this._SmoothTime);
+ 
+                mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                mousePos.z = -5f;
+
+                if (Input.mousePosition.y<=Screen.height - panBorderThickness || Input.mousePosition.y >= 0 + panBorderThickness)
+                {
+                    this.transform.position = Vector3.SmoothDamp(
+                    this.transform.position,
+                    mousePos,
+                    ref this._velocity,
+                    this._smoothing);
+                }
+                
+                if (Input.mousePosition.x <= Screen.width - panBorderThickness|| Input.mousePosition.x >= 0 + panBorderThickness)
+                {
+                    this.transform.position = Vector3.SmoothDamp(
+                    this.transform.position,
+                    mousePos,
+                    ref this._velocity,
+                    this._smoothing);
+                }
+                
+            }
         }
 
         IEnumerator ShakeCooldown ()

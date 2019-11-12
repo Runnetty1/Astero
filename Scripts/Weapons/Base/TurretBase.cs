@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
-using RRG.InputHandling.player;
+using Scripts.InputHandling.player;
 
-namespace RRG.ControlledObjects.Weapon
+namespace Scripts.ControlledObjects.Weapon
 {
     public class TurretBase : MonoBehaviour
     {

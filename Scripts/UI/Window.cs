@@ -2,9 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using RRG.InputHandling.player;
+using Scripts.InputHandling.player;
 
-namespace RRG.UI.Generic
+namespace Scripts.UI.Generic
 {
     public class Window : MonoBehaviour, IWindow
     {

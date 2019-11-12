@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using RRG.ControlledObjects.Weapon;
+using Scripts.ControlledObjects.Weapon;
 
 public class AIControl : MonoBehaviour {
 	
@@ -27,7 +27,7 @@ public class AIControl : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		target = GameObject.Find ("player");
+		//target = GameObject.Find ("player");
 		dodge = true;
 		dir = true;
 		turnspi = turnSpeed;
@@ -35,6 +35,7 @@ public class AIControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        /*
 		if (!waiting) {
 			checkForNewStates ();
 		}
@@ -54,6 +55,7 @@ public class AIControl : MonoBehaviour {
 			avoid();
 			//ShipTurret.GetComponent<TurretControl>().Fire();
 		}
+        */
 	}
 	void checkForNewStates(){
 		waiting = true;
@@ -63,8 +65,8 @@ public class AIControl : MonoBehaviour {
 		else if( a > 30 && a < 40){this.SetState(State.sniping);}
 		else if( a > 40 && a < 50){this.SetState(State.dodgeing);}
 		else if( a > 50 && a < 60){this.SetState(this.GetState());}
-		else if( a > 60 && a < 70){target = GameObject.Find ("player");}
-		else if( a > 80 && a < 90 && has2Players){target = GameObject.Find ("player2");}
+		//else if( a > 60 && a < 70){target = GameObject.Find ("player");}
+		//else if( a > 80 && a < 90 && has2Players){target = GameObject.Find ("player2");}
 		StartCoroutine(cooldown());
 
 	}
@@ -87,8 +89,8 @@ public class AIControl : MonoBehaviour {
 	}
 
 	void avoid(){
-		this.transform.GetComponent<Rigidbody2D>().AddRelativeForce(Vector2.right*Time.smoothDeltaTime *(accel),ForceMode2D.Impulse);
-		this.transform.rotation = Quaternion.Euler (0, 0, this.transform.rotation.eulerAngles.z - Time.smoothDeltaTime * (turnspi * 50));
+        GetComponent<ShipControll>().Forward();
+        this.transform.rotation = Quaternion.Euler (0, 0, this.transform.rotation.eulerAngles.z - Time.smoothDeltaTime * (turnspi * 50));
 		if (dodge) {
 			if (dir) {
 				turnspi = turnSpeed;
@@ -102,18 +104,18 @@ public class AIControl : MonoBehaviour {
 	}
 	void manuvering(){
 		turnspi = turnSpeed;
-		this.transform.GetComponent<Rigidbody2D>().AddRelativeForce(Vector2.right*Time.smoothDeltaTime *(accel-250f),ForceMode2D.Impulse);
+        GetComponent<ShipControll>().Forward();
 		turnTowardTarget ();
 	}
 	void rush(){
 		turnspi = turnSpeed + 10;
-		this.transform.GetComponent<Rigidbody2D>().AddRelativeForce(Vector2.right*Time.smoothDeltaTime *accel,ForceMode2D.Impulse);
-		turnTowardTarget ();
+        GetComponent<ShipControll>().Forward();
+        turnTowardTarget ();
 	}
 	void snipe(){
 		turnspi = turnSpeed;
-		this.transform.GetComponent<Rigidbody2D>().AddRelativeForce(-Vector2.right*Time.smoothDeltaTime *(accel-300f),ForceMode2D.Impulse);
-		turnTowardTarget ();
+        GetComponent<ShipControll>().Forward();
+        turnTowardTarget ();
 	}
 	void turnTowardTarget(){
 		Vector3 dir = target.transform.position - this.transform.position;
