@@ -6,6 +6,9 @@ Astero
 Info
 =======================
 
+this project has exeeded Githubs max size, and without me beeing able to pay for larger size, it wil not be updated for a while!
+However the project is still being worked on :) 
+
 This is all the files used for Astero made in Unity Engine (https://unity.com)
 Put all the files inside the Asset folder in the Unity project.
 Open the Singleplayer scene in the scen folder to see most of the working systems.
