@@ -6,14 +6,7 @@ Astero
 Info
 =======================
 
-this project has exeeded Githubs max size, and without me beeing able to pay for larger size, it wil not be updated for a while!
-However the project is still being worked on :) 
-
-This is all the files used for Astero made in Unity Engine (https://unity.com)
-Put all the files inside the Asset folder in the Unity project.
-Open the Singleplayer scene in the scen folder to see most of the working systems.
-
-> Readme is not fully set up yet.
+This project has exeeded Githubs max size, So i will no longer upload all the other files for the project. I will keep the scripts folder updated as i work on the game.
 
 Astero is a 2D Space RPG, planned to be a single- and multiplayer sandbox.
 Players will  get the abillity to explore several solar systems, conquer worlds, trade and transport goods, mine resources, create and command a fleet of millitary /  civilian transport and resource gatherering spaceships as well as space stations and defences.
