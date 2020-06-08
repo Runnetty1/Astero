@@ -2,6 +2,19 @@
 # Default Collab Ignore Rules
 # ===========================
 
+Animations/
+Audio/
+Environment/
+Materials/
+Plugins/
+PostProcessing/
+Resources/
+Scenes/
+Shaders/
+Textures/
+models/
+.mixer
+.prefab
 # OS Generated
 # ============
 .DS_Store
