@@ -13,8 +13,22 @@ Scenes/
 Shaders/
 Textures/
 models/
-.mixer
-.prefab
+
+Animations.meta
+Audio.meta
+Environment.meta
+Materials.meta
+Plugins.meta
+PostProcessing.meta
+Resources.meta
+Scenes.meta
+Shaders.meta
+Textures.meta
+models.meta
+
+
+
+
 # OS Generated
 # ============
 .DS_Store
@@ -44,3 +58,10 @@ ehthumbs.db
 [Bb]uild
 sysinfo.txt
 *.stackdump
+*.mixer
+*.mixer.meta
+*.asset
+*.asset.meta
+Fonts.meta
+*.prefab
+*.prefab.meta
